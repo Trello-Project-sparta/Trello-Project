@@ -1,7 +1,7 @@
 package com.example.trello.board.entity;
 
 import com.example.trello.common.util.Timestamped;
-import com.example.trello.team.entity.Team;
+import com.example.trello.userBoard.entity.UserBoard;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,9 +34,9 @@ public class Board extends Timestamped {
 
     @Column
     private String description;
-    
+
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Team> teams = new HashSet<>();
+    private Set<UserBoard> userBoards = new HashSet<>();
 
 
     public Board(String title, String background_color, String description) {

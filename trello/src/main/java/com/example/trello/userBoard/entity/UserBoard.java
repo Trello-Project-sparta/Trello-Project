@@ -1,4 +1,4 @@
-package com.example.trello.team.entity;
+package com.example.trello.userBoard.entity;
 
 import com.example.trello.board.entity.Board;
 import com.example.trello.user.User;
@@ -20,12 +20,12 @@ import lombok.Setter;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "team")
-public class Team {
+@Table(name = "user_board")
+public class UserBoard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long teamId;
+    private Long userBoardId;
 
     @Setter
     @Enumerated(value = EnumType.STRING)
@@ -39,7 +39,7 @@ public class Team {
     @JoinColumn(name = "board_id")
     private Board board;
 
-    public Team(User user, Board board, UserRoleEnum role) {
+    public UserBoard(User user, Board board, UserRoleEnum role) {
         this.user = user;
         this.board = board;
         this.role = role;

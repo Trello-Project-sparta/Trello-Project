@@ -1,6 +1,6 @@
 package com.example.trello.user;
 
-import com.example.trello.team.entity.Team;
+import com.example.trello.userBoard.entity.UserBoard;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,7 +40,7 @@ public class User {
     private boolean active = true;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Team> teams = new HashSet<>();
+    private Set<UserBoard> userBoards = new HashSet<>();
 
     public User(SignupRequestDto request, String password) {
         this.username = request.getUsername();

@@ -7,10 +7,10 @@ import com.example.trello.board.repository.BoardRepository;
 import com.example.trello.global.exception.InvalidUserException;
 import com.example.trello.global.exception.NotFoundBoardException;
 import com.example.trello.global.exception.NotFoundTeamException;
-import com.example.trello.team.entity.Team;
-import com.example.trello.team.entity.UserRoleEnum;
-import com.example.trello.team.repository.TeamRepository;
 import com.example.trello.user.User;
+import com.example.trello.userBoard.entity.UserBoard;
+import com.example.trello.userBoard.entity.UserRoleEnum;
+import com.example.trello.userBoard.repository.UserBoardRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
-    private final TeamRepository teamRepository;
+    private final UserBoardRepository userBoardRepository;
 
     @Transactional
     public BoardResponseDto createBoard(BoardRequestDto boardRequestDto, User user) {
@@ -31,8 +31,8 @@ public class BoardService {
 
         Board saveBoard = boardRepository.save(board);
 
-        Team team = new Team(user, board, UserRoleEnum.HOST);
-        teamRepository.save(team);
+        UserBoard userBoard = new UserBoard(user, board, UserRoleEnum.HOST);
+        userBoardRepository.save(userBoard);
 
         return new BoardResponseDto(saveBoard.getTitle(), saveBoard.getBackground_color(),
             saveBoard.getDescription(), saveBoard.getCreatedAt(), saveBoard.getModifiedAt());
@@ -43,10 +43,10 @@ public class BoardService {
         Board board = boardRepository.findById(boardId)
             .orElseThrow(NotFoundBoardException::new);
 
-        Team team = teamRepository.findByUserAndBoard(user, board)
+        UserBoard userBoard = userBoardRepository.findByUserAndBoard(user, board)
             .orElseThrow(NotFoundTeamException::new);
 
-        if (!team.getUser().getUserId().equals(user.getUserId())) {
+        if (!userBoard.getUser().getUserId().equals(user.getUserId())) {
             throw new InvalidUserException();
         }
 
@@ -62,24 +62,24 @@ public class BoardService {
         Board board = boardRepository.findById(boardId)
             .orElseThrow(NotFoundBoardException::new);
 
-        Team team = teamRepository.findByUserAndBoard(user, board)
+        UserBoard userBoard = userBoardRepository.findByUserAndBoard(user, board)
             .orElseThrow(NotFoundTeamException::new);
 
-        if (!team.getUser().getUserId().equals(user.getUserId())) {
+        if (!userBoard.getUser().getUserId().equals(user.getUserId())) {
             throw new InvalidUserException();
         }
         boardRepository.delete(board);
     }
 
 
-    public Board findById(Long boardId) {
-        return boardRepository.findById(boardId)
-            .orElseThrow(NotFoundBoardException::new);
-    }
-
     public List<BoardResponseDto> searchBoard(String search) {
         List<Board> boardList = boardRepository.searchByAny(search);
 
         return boardList.stream().map(BoardResponseDto::new).collect(Collectors.toList());
+    }
+
+    public Board findById(Long boardId) {
+        return boardRepository.findById(boardId)
+            .orElseThrow(NotFoundBoardException::new);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.trello.team.dto;
+package com.example.trello.userBoard.dto;
 
 import java.util.List;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class TeamRequestDto {
+public class UserBoardRequestDto {
 
     private List<String> emailList;
 

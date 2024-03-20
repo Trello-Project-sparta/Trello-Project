@@ -1,4 +1,4 @@
-package com.example.trello.team.entity;
+package com.example.trello.userBoard.entity;
 
 import lombok.Getter;
 
