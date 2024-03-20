@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "column")
-public class columnList {
+public class ColumnList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long column_id;
