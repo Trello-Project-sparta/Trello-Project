@@ -35,7 +35,7 @@ public class BoardService {
         teamRepository.save(team);
 
         return new BoardResponseDto(saveBoard.getTitle(), saveBoard.getBackground_color(),
-            saveBoard.getDescription(), saveBoard.getCreateAt(), saveBoard.getModifiedAt());
+            saveBoard.getDescription(), saveBoard.getCreatedAt(), saveBoard.getModifiedAt());
     }
 
     @Transactional
@@ -54,7 +54,7 @@ public class BoardService {
             boardRequestDto.getDescription());
 
         return new BoardResponseDto(board.getTitle(), board.getBackground_color(),
-            board.getDescription(), board.getCreateAt(),
+            board.getDescription(), board.getCreatedAt(),
             board.getModifiedAt());
     }
 

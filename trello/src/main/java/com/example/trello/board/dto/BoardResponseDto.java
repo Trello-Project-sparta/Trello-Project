@@ -27,7 +27,7 @@ public class BoardResponseDto {
         this.title = board.getTitle();
         this.background_color = board.getBackground_color();
         this.description = board.getDescription();
-        this.createdAt = board.getCreateAt();
+        this.createdAt = board.getCreatedAt();
         this.modifiedAt = board.getModifiedAt();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.trello.global;
+package com.example.trello.global.exception;
 
 public class NotfoundUserException extends RuntimeException {
 

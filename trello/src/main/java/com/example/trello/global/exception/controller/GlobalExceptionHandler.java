@@ -1,10 +1,10 @@
 package com.example.trello.global.exception.controller;
 
-import com.example.trello.global.NotfoundUserException;
 import com.example.trello.global.exception.InvalidUserException;
 import com.example.trello.global.exception.InviteDuplicateException;
 import com.example.trello.global.exception.NotFoundBoardException;
 import com.example.trello.global.exception.NotFoundTeamException;
+import com.example.trello.global.exception.NotfoundUserException;
 import com.example.trello.global.exception.dto.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

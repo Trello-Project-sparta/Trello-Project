@@ -1,4 +1,4 @@
-package com.example.trello.common;
+package com.example.trello.common.util;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -14,12 +14,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class Timestamped {
+public class Timestamped {
 
     @CreatedDate
     @Column(updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
     @Column
