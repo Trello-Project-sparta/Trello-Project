@@ -2,6 +2,7 @@ package com.example.trello.team.service;
 
 import com.example.trello.board.entity.Board;
 import com.example.trello.board.service.BoardService;
+import com.example.trello.global.NotfoundUserException;
 import com.example.trello.team.dto.TeamRequestDto;
 import com.example.trello.team.dto.TeamResponseDto;
 import com.example.trello.team.entity.Team;
@@ -64,7 +65,7 @@ public class TeamService {
         if (teamRepository.existsByUserInAndBoardBoardId(userList, boardId)) {
             teamRepository.deleteAll(teamList);
         } else {
-            throw new RuntimeException("해당 유저가 없습니다.");
+            throw new NotfoundUserException();
         }
 
         List<Team> savedTeamList = teamRepository.findAllByBoardBoardId(boardId);
