@@ -1,6 +1,6 @@
 package com.example.trello.comment;
 
-import com.example.trello.common.dto.Timestamped;
+import com.example.trello.common.util.Timestamped;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "comment")
 public class Comment extends Timestamped {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;

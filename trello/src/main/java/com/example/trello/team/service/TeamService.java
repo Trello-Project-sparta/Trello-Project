@@ -2,14 +2,14 @@ package com.example.trello.team.service;
 
 import com.example.trello.board.entity.Board;
 import com.example.trello.board.service.BoardService;
-import com.example.trello.global.NotfoundUserException;
+import com.example.trello.global.exception.NotfoundUserException;
 import com.example.trello.team.dto.TeamRequestDto;
 import com.example.trello.team.dto.TeamResponseDto;
 import com.example.trello.team.entity.Team;
 import com.example.trello.team.entity.UserRoleEnum;
 import com.example.trello.team.repository.TeamRepository;
 import com.example.trello.user.User;
-import com.example.trello.user.service.UserService;
+import com.example.trello.user.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
