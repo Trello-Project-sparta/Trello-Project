@@ -1,64 +1,73 @@
 package com.example.trello.comment.service;
 
-import com.example.trello.board.Board;
+import com.example.trello.card.Card;
+import com.example.trello.columns.CommonResponseDto;
+import com.example.trello.comment.common.exception.CustomErrorCode;
+import com.example.trello.comment.common.exception.CustomException;
 import com.example.trello.comment.dto.CommentRequestDto;
 import com.example.trello.comment.dto.CommentResponseDto;
-import com.example.trello.comment.exception.dto.UnmodifiableException;
+import com.example.trello.comment.entitiy.Comment;
 import com.example.trello.comment.repository.CommentRepository;
 import com.example.trello.security.UserDetailsImpl;
 import com.example.trello.user.User;
-import com.example.trello.user.UserRepository;
+import jakarta.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class CommentService {
 
-  private final UserRepository userRepository;
-  private final BoardRepository boardRepository;
-  private final CardRepository cardRepository;
   private final CommentRepository commentRepository;
+  private final CardRepository cardRepository;
 
-  public CommentResponseDto createComment(Long boardId, CommentRequestDto commentRequestDto,
-      UserDetailsImpl userDetails) {
-    User user = userRepository.findById(userDetails.getUser().getUserId())
-        .orElseThrow(NotFoundUserException::new);
-    Board board = boardRepository.findById(boardId)
-        .orElseThrow(NotFoundBoardException::new);
-    Comment saveComment = new Comment(commentRequestDto.getComment(), user, board);
-    commentRepository.save(saveComment);
+  @Transactional
+  public CommonResponseDto createComment(Long cardId, UserDetailsImpl userDetails,CommentRequestDto commentRequestDto) {
+    Card card = cardRepository.findById(cardId)
+        .orElseThrow(() -> new CustomException(CustomErrorCode.CARD_NOT_FOUND_EXCEPTION, 404));
 
-    return new CommentResponseDto(saveComment, user.getUsername());
+    User user =userDetails.getUser();
 
+    Comment comment = Comment.builder()
+        .content(commentRequestDto.getContent())
+        .card(card)
+        .user(user)
+        .build();
+
+    commentRepository.save(comment);
+    return new CommonResponseDto("댓글 생성 완료", 200);
   }
 
   @Transactional
-  public CommentResponseDto updateComment(Long commentId, CommentRequestDto commentRequestDto,
-      UserDetailsImpl userDetails) {
-    Comment comment = commentRepository.findById(commentId).orElseThrow();
-
-    if (!(comment.getUser().getUserId() == userDetails.getUser().getUserId())) {
-      throw new UnmodifiableException();
-    }
-
-    comment.update(commentRequestDto);
-
-    return new CommentResponseDto(comment, comment.getUser().getUsername());
-
+  public List<CommentResponseDto> getAllComments() {
+    List<Comment> comments = commentRepository.findAll();
+    return comments.stream()
+        .map(CommentResponseDto::fromEntity)
+        .collect(Collectors.toList());
   }
 
-  public ExceptionDto deleteComment(Long commentId, UserDetailsImpl userDetails) {
-    Comment comment = commentRepository.findById(commentId).orElseThrow();
+  @Transactional
+  public CommentResponseDto getCommentById(Long id) {
+    Comment comment = commentRepository.findById(id)
+        .orElseThrow(() -> new CustomException(CustomErrorCode.COMMENT_NOT_FOUND_EXCEPTION, 404));
 
-    if (!(comment.getUser().getMemberId() == userDetails.getUser().getUserId())) {
-      throw new UnmodifiableException();
-    }
+    return CommentResponseDto.fromEntity(comment);
+  }
 
-    commentRepository.delete(comment);
+  @Transactional
+  public CommonResponseDto updateComment(Long id, CommentRequestDto commentRequestDto) {
+    Comment comment = commentRepository.findById(id)
+        .orElseThrow(() -> new CustomException(CustomErrorCode.COMMENT_NOT_FOUND_EXCEPTION, 404));
 
-    String message = "삭제가 정상적으로 처리되었습니다.";
-    return new ExceptionDto(message, 200);
+    comment.updateComment(commentRequestDto.getContent());
+    return new CommonResponseDto("댓글 수정 완료", 200);
+  }
+
+  @Transactional
+  public CommonResponseDto deleteComment(Long id) {
+    commentRepository.deleteById(id);
+    return new CommonResponseDto("댓글 삭제 완료", 200);
   }
 }
