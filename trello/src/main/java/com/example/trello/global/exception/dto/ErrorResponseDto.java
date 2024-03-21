@@ -1,4 +1,4 @@
-package com.example.trello.global.exception;
+package com.example.trello.global.exception.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +7,12 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ErrorResponseDto {
 
-    /** HTTP 응답 상태 코드 */
+    /**
+     * HTTP 응답 상태 코드
+     */
     private int status;
-    /** 응답 메시지 */
+    /**
+     * 응답 메시지
+     */
     private String message;
 }
