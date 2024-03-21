@@ -3,6 +3,7 @@ package com.example.trello.comment.entitiy;
 import com.example.trello.card.Card;
 import com.example.trello.comment.common.BaseEntity;
 import com.example.trello.user.User;
+import com.example.trello.userBoard.UserBoard;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -34,13 +35,13 @@ public class Comment extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id", nullable = false)
-  private User user;
+  private UserBoard userBoard;
 
   @Builder
-  public Comment(String content, Card card, User user) {
+  public Comment(String content, Card card, UserBoard userBoard) {
     this.content = content;
     this.card = card;
-    this.user = user;
+    this.userBoard = userBoard;
   }
 
   public void updateComment(String content) {
