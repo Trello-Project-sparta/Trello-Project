@@ -1,6 +1,6 @@
-package com.example.trello.board;
+package com.example.trello.comment;
 
-import com.example.trello.common.dto.Timestamped;
+import com.example.trello.common.util.Timestamped;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,18 +14,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "board")
-public class Board extends Timestamped {
+@Table(name = "comment")
+public class Comment extends Timestamped {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long boardId;
+    private Long commentId;
 
     @Column(nullable = false)
-    private String title;
+    private String content;
 
     @Column(nullable = false)
-    private String background_color;
+    private String edit;
 
-    @Column(nullable = false)
-    private String description;
 }
