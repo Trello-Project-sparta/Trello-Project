@@ -1,5 +1,28 @@
 package com.example.trello.card;
 
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
 public class CardResponseDto {
+  private Long cardId;
+  private String cardname;
+  private String creatorname;
+  private String description;
+  private String color;
+  private String workername;
+  private LocalDateTime deadline;
+
+  public CardResponseDto(Card card) {
+    this.cardId = card.getCardId();
+    this.cardname = card.getCardname();
+    this.creatorname = card.getCreator().getUsername();
+    this.description = card.getDescription();
+    this.color = card.getColor();
+    this.workername = card.getWorker().getUsername();
+    this.deadline = card.getDeadline();
+  }
 
 }

@@ -18,7 +18,8 @@ public class CardRequestDto {
 
   private User worker;
 
-  private ColumnList columnList;
+  @NotBlank
+  private ColumnList column;
 
   private LocalDateTime deadline;
 

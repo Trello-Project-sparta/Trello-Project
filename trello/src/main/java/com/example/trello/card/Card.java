@@ -65,11 +65,11 @@ public class Card {
         this.deadline = cardRequestDto.getDeadline();
     }
 
-    public void updateCard(CardRequestDto cardRequestDto){
-        this.cardname = cardRequestDto.getCardname();
-        this.description = cardRequestDto.getDescription();
-        this.color = cardRequestDto.getColor();
-        this.worker = cardRequestDto.getWorker();
+    public void updateCard(CardUpdateDto cardUpdateDto){
+        this.cardname = cardUpdateDto.getCardname();
+        this.description = cardUpdateDto.getDescription();
+        this.color = cardUpdateDto.getColor();
+        this.worker = cardUpdateDto.getWorker();
     }
 
     public void updateDeadline(LocalDateTime deadline){
