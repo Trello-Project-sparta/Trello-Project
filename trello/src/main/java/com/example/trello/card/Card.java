@@ -52,16 +52,15 @@ public class Card {
     @JoinColumn (name = "column_id", nullable = false)
     private ColumnList column;
 
-    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments = new ArrayList<>();
+//    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Comment> comments = new ArrayList<>();
 
-    public Card (CardRequestDto cardRequestDto, User creator){
+    public Card (CardRequestDto cardRequestDto, User creator, ColumnList column){
         this.creator = creator;
         this.cardname = cardRequestDto.getCardname();
         this.description = cardRequestDto.getDescription();
         this.color = cardRequestDto.getColor();
-        this.worker = cardRequestDto.getWorker();
-        this.column = cardRequestDto.getColumn();
+        this.column = column;
         this.deadline = cardRequestDto.getDeadline();
     }
 
@@ -69,7 +68,6 @@ public class Card {
         this.cardname = cardUpdateDto.getCardname();
         this.description = cardUpdateDto.getDescription();
         this.color = cardUpdateDto.getColor();
-        this.worker = cardUpdateDto.getWorker();
     }
 
     public void updateDeadline(LocalDateTime deadline){
@@ -79,6 +77,8 @@ public class Card {
     public void updateColumn(ColumnList column){
         this.column = column;
     }
+
+    public void updateWorker(User worker){ this.worker = worker; }
 
 
 

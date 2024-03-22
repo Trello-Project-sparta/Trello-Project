@@ -21,7 +21,7 @@ public class CardController {
   private final CardService cardService;
 
 
-  @PostMapping("/cards/boards/{boardId}/columns/{columnId}/cards/create")
+  @PostMapping("/boards/{boardId}/columns/{columnId}/cards/create")
   public ResponseEntity<CardResponseDto> createCard(@PathVariable Long boardId,
       @PathVariable Long columnId,
       @AuthenticationPrincipal UserDetailsImpl userDetails,
@@ -31,18 +31,18 @@ public class CardController {
     return ResponseEntity.ok().body(cardResponseDto);
   }
 
-  @PutMapping("/cards/boards/{boardId}/columns/{columnId}/cards/{cardId}/update")
+  @PutMapping("/boards/{boardId}/columns/{columnId}/cards/{cardId}/update")
   public ResponseEntity<CardResponseDto> updateCard(@PathVariable Long boardId,
       @PathVariable Long columnId,
       @PathVariable Long cardId,
       @AuthenticationPrincipal UserDetailsImpl userDetails,
       @RequestBody CardUpdateDto cardUpdateDto) {
     CardResponseDto cardResponseDto = cardService.updateCard(userDetails.getUser(), boardId,
-        columnId, cardId, cardUpdateDto);
+        cardId, cardUpdateDto);
     return ResponseEntity.ok().body(cardResponseDto);
   }
 
-  @PutMapping("/cards/boards/{boardId}/columns/{columnId}/cards/{cardId}/deadline/{deadline}")
+  @PutMapping("/boards/{boardId}/columns/{columnId}/cards/{cardId}/deadline/{deadline}")
   public ResponseEntity<CardResponseDto> updateDeadline(
       @AuthenticationPrincipal UserDetailsImpl userDetails,
       @PathVariable Long boardId,
@@ -50,11 +50,22 @@ public class CardController {
       @PathVariable Long cardId,
       @PathVariable LocalDateTime deadline) {
     CardResponseDto cardResponseDto = cardService.updateDeadline(userDetails.getUser(), boardId,
-        columnId, cardId, deadline);
+        cardId, deadline);
     return ResponseEntity.ok().body(cardResponseDto);
   }
 
-  @PutMapping("/cards/boards/{boardId}/columns/{columnId}/cards/{cardId}/updatecolumn")
+  @PutMapping("/boards/{boardId}/cards/{cardId}/worker/{workerId}/updateworker")
+  public ResponseEntity<WorkerResponseDto> updateWorker(
+      @AuthenticationPrincipal UserDetailsImpl userDetails,
+      @PathVariable Long boardId,
+      @PathVariable Long workerId,
+      @PathVariable Long cardId) {
+    WorkerResponseDto workerResponseDto = cardService.updateWorker(userDetails.getUser(), boardId,
+        workerId, cardId);
+    return ResponseEntity.ok().body(workerResponseDto);
+  }
+
+  @PutMapping("/boards/{boardId}/columns/{columnId}/cards/{cardId}/updatecolumn")
   public ResponseEntity<CardResponseDto> updateColmn(
       @AuthenticationPrincipal UserDetailsImpl userDetails,
       @PathVariable Long boardId,
@@ -65,7 +76,7 @@ public class CardController {
     return ResponseEntity.ok().body(cardResponseDto);
   }
 
-  @DeleteMapping("/cards/boards/{boardId}/columns/{columnId}/cards/{cardId}/delete")
+  @DeleteMapping("/boards/{boardId}/columns/{columnId}/cards/{cardId}/delete")
   public ResponseEntity<Void> deleteCard(@AuthenticationPrincipal UserDetailsImpl userDetails,
       @PathVariable Long boardId, @PathVariable Long cardId) {
     cardService.deleteCard(boardId, cardId, userDetails.getUser());

@@ -13,6 +13,5 @@ public class CardUpdateDto {
 
   private String color;
 
-  private User worker;
 
 }

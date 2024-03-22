@@ -14,7 +14,6 @@ public class CardResponseDto {
   private String creatorname;
   private String description;
   private String color;
-  private String workername;
   private LocalDateTime deadline;
 
   public CardResponseDto(Card card) {
@@ -23,7 +22,6 @@ public class CardResponseDto {
     this.creatorname = card.getCreator().getUsername();
     this.description = card.getDescription();
     this.color = card.getColor();
-    this.workername = card.getWorker().getUsername();
     this.deadline = card.getDeadline();
   }
 

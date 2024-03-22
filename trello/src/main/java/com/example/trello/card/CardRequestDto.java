@@ -16,11 +16,6 @@ public class CardRequestDto {
 
   private String color;
 
-  private User worker;
-
-  @NotBlank
-  private ColumnList column;
-
   private LocalDateTime deadline;
 
 }

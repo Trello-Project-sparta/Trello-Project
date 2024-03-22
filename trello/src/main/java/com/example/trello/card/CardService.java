@@ -3,12 +3,16 @@ package com.example.trello.card;
 import com.example.trello.board.entity.Board;
 import com.example.trello.board.repository.BoardRepository;
 import com.example.trello.columnList.ColumnList;
+import com.example.trello.columnList.ColumnListRepository;
 import com.example.trello.global.exception.NotFoundUserException;
 import com.example.trello.user.User;
+import com.example.trello.user.UserRepository;
 import com.example.trello.userBoard.entity.UserBoard;
 import com.example.trello.userBoard.repository.UserBoardRepository;
+import jakarta.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,10 +30,13 @@ public class CardService {
 
   private final ColumnListRepository columnListRepository;
 
+  private final UserRepository userRepository;
+
   public CardResponseDto createCard(Long boardId, Long columnId, User creator,
       CardRequestDto cardRequestDto) {
     if (validationUser(boardId, creator.getUserId())) {
-      Card card = new Card(cardRequestDto, creator);
+      ColumnList column = columnListRepository.findById(columnId).orElseThrow();
+      Card card = new Card(cardRequestDto, creator, column);
       cardRepository.save(card);
       return new CardResponseDto(card);
     } else {
@@ -38,10 +45,10 @@ public class CardService {
 
   }
 
-  public CardResponseDto updateCard(User user, Long boardId, Long columnId, Long cardId,
+  public CardResponseDto updateCard(User user, Long boardId, Long cardId,
       CardUpdateDto cardUpdateDto) {
     if (validationUser(boardId, user.getUserId())) {
-      Card card = cardRepository.findById(cardId).get();
+      Card card = cardRepository.findById(cardId).orElseThrow();
       card.updateCard(cardUpdateDto);
       return new CardResponseDto(card);
     } else {
@@ -49,10 +56,10 @@ public class CardService {
     }
   }
 
-  public CardResponseDto updateDeadline(User user, Long boardId, Long columnId, Long cardId,
+  public CardResponseDto updateDeadline(User user, Long boardId, Long cardId,
       LocalDateTime deadline) {
     if (validationUser(boardId, user.getUserId())) {
-      Card card = cardRepository.findById(cardId).get();
+      Card card = cardRepository.findById(cardId).orElseThrow();
       card.updateDeadline(deadline);
       return new CardResponseDto(card);
     }
@@ -62,14 +69,26 @@ public class CardService {
 
   public CardResponseDto updateColumn(User user, Long boardId, Long columnId, Long cardId) {
     if (validationUser(boardId, user.getUserId())) {
-      Card card = cardRepository.findById(cardId).get();
-      ColumnList column = columnListRepository.findById(columnId).get();
+      Card card = cardRepository.findById(cardId).orElseThrow();
+      ColumnList column = columnListRepository.findById(columnId).orElseThrow();
       card.updateColumn(column);
       return new CardResponseDto(card);
     }
     else {throw new NotFoundUserException();}
 
   }
+
+  public WorkerResponseDto updateWorker(User user, Long boardId, Long workerId, Long cardId) {
+    if (validationUser(boardId, user.getUserId()) && validationUser(boardId, workerId)) {
+      Card card = cardRepository.findById(cardId).orElseThrow();
+      User worker = userRepository.findById(workerId).orElseThrow();
+      card.updateWorker(worker);
+      return new WorkerResponseDto(worker.getUsername());
+    }
+    else {throw new NotFoundUserException();}
+
+  }
+
 
   public void deleteCard(Long boardId, Long cardId, User user) {
     if (validationUser(boardId, user.getUserId())){
