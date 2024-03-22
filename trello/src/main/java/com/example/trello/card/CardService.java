@@ -1,18 +1,14 @@
 package com.example.trello.card;
 
-import com.example.trello.board.entity.Board;
-import com.example.trello.board.repository.BoardRepository;
-import com.example.trello.columnList.ColumnList;
+
 import com.example.trello.columnList.ColumnListRepository;
+import com.example.trello.columnList.entity.ColumnList;
 import com.example.trello.global.exception.NotFoundUserException;
 import com.example.trello.user.User;
 import com.example.trello.user.UserRepository;
-import com.example.trello.userBoard.entity.UserBoard;
 import com.example.trello.userBoard.repository.UserBoardRepository;
-import jakarta.persistence.EntityNotFoundException;
+
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

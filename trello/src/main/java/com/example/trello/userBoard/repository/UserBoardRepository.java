@@ -21,4 +21,6 @@ public interface UserBoardRepository extends JpaRepository<UserBoard, Long> {
     List<UserBoard> findAllByUserInAndBoardBoardId(List<User> user, Long boardId);
 
     List<UserBoard> findAllByUserUserIdAndRole(Long userId, UserRoleEnum role);
+
+    boolean existsByBoardBoardIdAndUserUserId(Long boardId, Long userId);
 }

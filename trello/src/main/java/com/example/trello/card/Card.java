@@ -1,8 +1,8 @@
 package com.example.trello.card;
 
 
-import com.example.trello.columnList.ColumnList;
-import com.example.trello.comment.Comment;
+
+import com.example.trello.columnList.entity.ColumnList;
 import com.example.trello.user.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

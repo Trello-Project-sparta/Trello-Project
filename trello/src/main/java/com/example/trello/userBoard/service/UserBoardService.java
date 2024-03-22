@@ -4,7 +4,6 @@ import com.example.trello.board.entity.Board;
 import com.example.trello.board.service.BoardService;
 import com.example.trello.global.exception.InvalidInviteRightException;
 import com.example.trello.global.exception.NotFoundUserBoardException;
-import com.example.trello.global.exception.NotfoundUserException;
 import com.example.trello.user.User;
 import com.example.trello.user.UserService;
 import com.example.trello.userBoard.dto.UserBoardRequestDto;
