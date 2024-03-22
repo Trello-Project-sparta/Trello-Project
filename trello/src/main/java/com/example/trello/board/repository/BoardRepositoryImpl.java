@@ -28,4 +28,17 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom {
             .where(predicate)
             .fetch();
     }
+
+    @Override
+    public List<Board> searchByBoardIdIn(List<Long> boardIdList, String search) {
+
+        BooleanBuilder predicate = new BooleanBuilder();
+        predicate.or(board.title.contains(search));
+        predicate.or(board.background_color.eq(search));
+
+        return jpaQueryFactory.selectFrom(board)
+            .where(board.boardId.in(boardIdList))
+            .where(predicate)
+            .fetch();
+    }
 }

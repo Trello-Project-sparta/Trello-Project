@@ -9,4 +9,7 @@ public interface BoardRepositoryCustom {
 
     List<Board> searchByAny(String search);
 
+    List<Board> searchByBoardIdIn(List<Long> boardIdList, String search);
+
+
 }
