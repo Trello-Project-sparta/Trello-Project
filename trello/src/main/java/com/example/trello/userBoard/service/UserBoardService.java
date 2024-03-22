@@ -2,7 +2,7 @@ package com.example.trello.userBoard.service;
 
 import com.example.trello.board.entity.Board;
 import com.example.trello.board.service.BoardService;
-import com.example.trello.global.exception.NotfoundUserException;
+import com.example.trello.global.exception.NotFoundUserException;
 import com.example.trello.user.User;
 import com.example.trello.user.UserService;
 import com.example.trello.userBoard.dto.UserBoardRequestDto;
@@ -66,7 +66,7 @@ public class UserBoardService {
         if (userBoardRepository.existsByUserInAndBoardBoardId(userList, boardId)) {
             userBoardRepository.deleteAll(userBoardList);
         } else {
-            throw new NotfoundUserException();
+            throw new NotFoundUserException();
         }
 
         List<UserBoard> savedUserBoardList = userBoardRepository.findAllByBoardBoardId(boardId);

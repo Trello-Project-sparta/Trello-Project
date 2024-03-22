@@ -61,7 +61,7 @@ public class Card {
         this.description = cardRequestDto.getDescription();
         this.color = cardRequestDto.getColor();
         this.worker = cardRequestDto.getWorker();
-        this.column = cardRequestDto.getColumnList();
+        this.column = cardRequestDto.getColumn();
         this.deadline = cardRequestDto.getDeadline();
     }
 
@@ -74,6 +74,10 @@ public class Card {
 
     public void updateDeadline(LocalDateTime deadline){
         this.deadline = deadline;
+    }
+
+    public void updateColumn(ColumnList column){
+        this.column = column;
     }
 
 

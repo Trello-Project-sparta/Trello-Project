@@ -1,11 +1,8 @@
 package com.example.trello.global.exception;
 
-public class NotFoundUserException extends IllegalArgumentException{
-    public NotFoundUserException() {
-        super("보드 사용자가 아닙니다");
-    }
+public class NotFoundUserException extends RuntimeException {
 
-    public NotFoundUserException(String s) {
-        super(s);
+    public NotFoundUserException() {
+        super("해당 유저가 존재하지 않습니다.");
     }
 }

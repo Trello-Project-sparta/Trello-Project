@@ -1,13 +1,14 @@
 package com.example.trello.card;
 
-import com.example.trello.board.Board;
+import com.example.trello.board.entity.Board;
+import com.example.trello.board.repository.BoardRepository;
+import com.example.trello.columnList.ColumnList;
 import com.example.trello.global.exception.NotFoundUserException;
 import com.example.trello.user.User;
-import com.example.trello.user.UserRepository;
-import com.example.trello.userBoard.UserBoard;
+import com.example.trello.userBoard.entity.UserBoard;
+import com.example.trello.userBoard.repository.UserBoardRepository;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,10 @@ public class CardService {
   private final CardRepository cardRepository;
 
   private final BoardRepository boardRepository;
+
+  private final UserBoardRepository userBoardRepository;
+
+  private final ColumnListRepository columnListRepository;
 
   public CardResponseDto createCard(Long boardId, Long columnId, User creator,
       CardRequestDto cardRequestDto) {
@@ -55,9 +60,20 @@ public class CardService {
 
   }
 
+  public CardResponseDto updateColumn(User user, Long boardId, Long columnId, Long cardId) {
+    if (validationUser(boardId, user.getUserId())) {
+      Card card = cardRepository.findById(cardId).get();
+      ColumnList column = columnListRepository.findById(columnId).get();
+      card.updateColumn(column);
+      return new CardResponseDto(card);
+    }
+    else {throw new NotFoundUserException();}
+
+  }
+
   public void deleteCard(Long boardId, Long cardId, User user) {
     if (validationUser(boardId, user.getUserId())){
-      Card card = cardRepository.findById(cardId).get();
+   cardRepository.deleteById(cardId);
     }
     else {throw new NotFoundUserException();}
 
@@ -65,13 +81,14 @@ public class CardService {
 
 
   private boolean validationUser(Long boardId, Long userId) {
-    Board board = boardRepository.findById(boardId);
-    List<UserBoard> userBoards = userBoardRepository.findAllByBoardId(boardId);
-    List<Long> userIds = userBoards.stream().map(UserBoard::getUserId).collect(Collectors.toList());
-    (userId.equals(board.getuserId) || userIds.contains(userId)) {
-      return true;
+    Board board = boardRepository.findById(boardId).get();
+    List<UserBoard> userBoards = userBoardRepository.findAllByBoardBoardId(boardId);
+    for (UserBoard userBoard : userBoards) {
+      if (userBoard.getUser().getUserId().equals(userId)) {
+        return true; // 로그인 한 사용자가 보드에 속해 있음
+      }
     }
-    return false;
+    return false; // 로그인 한 사용자가 보드에 속해 있지 않음
   }
 
 
