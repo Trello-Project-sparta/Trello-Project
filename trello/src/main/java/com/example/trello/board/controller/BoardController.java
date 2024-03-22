@@ -51,9 +51,10 @@ public class BoardController {
     }
 
     @GetMapping("")
-    public List<BoardResponseDto> searchBoard(
+    public List<BoardResponseDto> getAllBoard(
+        @AuthenticationPrincipal UserDetailsImpl userDetails,
         @RequestParam(name = "search", defaultValue = "") String search) {
-        return boardService.searchBoard(search);
+        return boardService.getAllBoard(userDetails.getUser(), search);
     }
 
 }

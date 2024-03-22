@@ -11,6 +11,7 @@ import com.example.trello.user.User;
 import com.example.trello.userBoard.entity.UserBoard;
 import com.example.trello.userBoard.entity.UserRoleEnum;
 import com.example.trello.userBoard.repository.UserBoardRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -43,7 +44,8 @@ public class BoardService {
         Board board = boardRepository.findById(boardId)
             .orElseThrow(NotFoundBoardException::new);
 
-        UserBoard userBoard = userBoardRepository.findByUserAndBoard(user, board)
+        UserBoard userBoard = userBoardRepository.findByBoardBoardIdAndUserUserId(user.getUserId(),
+                board.getBoardId())
             .orElseThrow(NotFoundTeamException::new);
 
         if (!userBoard.getUser().getUserId().equals(user.getUserId())) {
@@ -62,7 +64,8 @@ public class BoardService {
         Board board = boardRepository.findById(boardId)
             .orElseThrow(NotFoundBoardException::new);
 
-        UserBoard userBoard = userBoardRepository.findByUserAndBoard(user, board)
+        UserBoard userBoard = userBoardRepository.findByBoardBoardIdAndUserUserId(user.getUserId(),
+                board.getBoardId())
             .orElseThrow(NotFoundTeamException::new);
 
         if (!userBoard.getUser().getUserId().equals(user.getUserId())) {
@@ -70,16 +73,27 @@ public class BoardService {
         }
         boardRepository.delete(board);
     }
+    
 
+    public List<BoardResponseDto> getAllBoard(User user, String search) {
+        List<UserBoard> userBoardList = userBoardRepository.findAllByUserUserIdAndRole(
+            user.getUserId(), UserRoleEnum.HOST);
 
-    public List<BoardResponseDto> searchBoard(String search) {
-        List<Board> boardList = boardRepository.searchByAny(search);
+        List<Long> boardIdList = new ArrayList<>();
+
+        for (UserBoard userBoard : userBoardList) {
+            boardIdList.add(userBoard.getBoard().getBoardId());
+        }
+
+        List<Board> boardList = boardRepository.searchByBoardIdIn(boardIdList, search);
 
         return boardList.stream().map(BoardResponseDto::new).collect(Collectors.toList());
     }
+
 
     public Board findById(Long boardId) {
         return boardRepository.findById(boardId)
             .orElseThrow(NotFoundBoardException::new);
     }
+
 }
