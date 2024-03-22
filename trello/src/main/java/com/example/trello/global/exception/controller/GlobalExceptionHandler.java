@@ -1,10 +1,11 @@
 package com.example.trello.global.exception.controller;
 
+import com.example.trello.global.exception.InvalidInviteRightException;
 import com.example.trello.global.exception.InvalidUserException;
-import com.example.trello.global.exception.InviteDuplicateException;
 import com.example.trello.global.exception.NotFoundBoardException;
-import com.example.trello.global.exception.NotFoundTeamException;
-import com.example.trello.global.exception.NotFoundUserException;
+import com.example.trello.global.exception.NotFoundColumnListException;
+import com.example.trello.global.exception.NotFoundUserBoardException;
+import com.example.trello.global.exception.NotfoundUserException;
 import com.example.trello.global.exception.dto.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(InviteDuplicateException.class)
+    @ExceptionHandler(InvalidInviteRightException.class)
     public ResponseEntity<ErrorResponseDto> handleInviteDuplicateException(
-        InviteDuplicateException e) {
+        InvalidInviteRightException e) {
         return ResponseEntity.badRequest()
             .body(new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
     }
@@ -27,8 +28,9 @@ public class GlobalExceptionHandler {
             .body(new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
     }
 
-    @ExceptionHandler(NotFoundTeamException.class)
-    public ResponseEntity<ErrorResponseDto> handleNotFoundTeamException(NotFoundTeamException e) {
+    @ExceptionHandler(NotFoundUserBoardException.class)
+    public ResponseEntity<ErrorResponseDto> handleNotFoundTeamException(
+        NotFoundUserBoardException e) {
         return ResponseEntity.badRequest()
             .body(new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
     }
@@ -39,8 +41,15 @@ public class GlobalExceptionHandler {
             .body(new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
     }
 
-    @ExceptionHandler(NotFoundUserException.class)
-    public ResponseEntity<ErrorResponseDto> handleNotfoundUserException(NotFoundUserException e) {
+    @ExceptionHandler(NotfoundUserException.class)
+    public ResponseEntity<ErrorResponseDto> handleNotfoundUserException(NotfoundUserException e) {
+        return ResponseEntity.badRequest()
+            .body(new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+    }
+
+    @ExceptionHandler(NotFoundColumnListException.class)
+    public ResponseEntity<ErrorResponseDto> handleNotFoundColumnListException(
+        NotFoundColumnListException e) {
         return ResponseEntity.badRequest()
             .body(new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
     }
