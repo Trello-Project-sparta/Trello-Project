@@ -6,7 +6,7 @@ import com.example.trello.board.entity.Board;
 import com.example.trello.board.repository.BoardRepository;
 import com.example.trello.global.exception.InvalidUserException;
 import com.example.trello.global.exception.NotFoundBoardException;
-import com.example.trello.global.exception.NotFoundTeamException;
+import com.example.trello.global.exception.NotFoundUserBoardException;
 import com.example.trello.user.User;
 import com.example.trello.userBoard.entity.UserBoard;
 import com.example.trello.userBoard.entity.UserRoleEnum;
@@ -46,7 +46,7 @@ public class BoardService {
 
         UserBoard userBoard = userBoardRepository.findByBoardBoardIdAndUserUserId(user.getUserId(),
                 board.getBoardId())
-            .orElseThrow(NotFoundTeamException::new);
+            .orElseThrow(NotFoundUserBoardException::new);
 
         if (!userBoard.getUser().getUserId().equals(user.getUserId())) {
             throw new InvalidUserException();
@@ -66,14 +66,14 @@ public class BoardService {
 
         UserBoard userBoard = userBoardRepository.findByBoardBoardIdAndUserUserId(user.getUserId(),
                 board.getBoardId())
-            .orElseThrow(NotFoundTeamException::new);
+            .orElseThrow(NotFoundUserBoardException::new);
 
         if (!userBoard.getUser().getUserId().equals(user.getUserId())) {
             throw new InvalidUserException();
         }
         boardRepository.delete(board);
     }
-    
+
 
     public List<BoardResponseDto> getAllBoard(User user, String search) {
         List<UserBoard> userBoardList = userBoardRepository.findAllByUserUserIdAndRole(
