@@ -1,6 +1,6 @@
 package com.example.trello.security;
 
-import com.example.trello.user.User;
+import com.example.trello.user.entity.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;

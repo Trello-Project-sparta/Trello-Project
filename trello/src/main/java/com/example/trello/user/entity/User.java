@@ -1,5 +1,7 @@
-package com.example.trello.user;
+package com.example.trello.user.entity;
 
+import com.example.trello.user.dto.ProfileRequestDto;
+import com.example.trello.user.dto.SignupRequestDto;
 import com.example.trello.userBoard.entity.UserBoard;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

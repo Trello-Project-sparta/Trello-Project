@@ -2,7 +2,7 @@ package com.example.trello.userBoard.repository;
 
 
 import com.example.trello.board.entity.Board;
-import com.example.trello.user.User;
+import com.example.trello.user.entity.User;
 import com.example.trello.userBoard.entity.UserBoard;
 import java.util.List;
 import java.util.Optional;
