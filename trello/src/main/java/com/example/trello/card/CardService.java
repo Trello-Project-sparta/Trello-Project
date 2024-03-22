@@ -24,8 +24,6 @@ public class CardService {
 
   private final CardRepository cardRepository;
 
-  private final BoardRepository boardRepository;
-
   private final UserBoardRepository userBoardRepository;
 
   private final ColumnListRepository columnListRepository;
@@ -100,14 +98,15 @@ public class CardService {
 
 
   private boolean validationUser(Long boardId, Long userId) {
-    Board board = boardRepository.findById(boardId).get();
-    List<UserBoard> userBoards = userBoardRepository.findAllByBoardBoardId(boardId);
-    for (UserBoard userBoard : userBoards) {
-      if (userBoard.getUser().getUserId().equals(userId)) {
-        return true; // 로그인 한 사용자가 보드에 속해 있음
-      }
-    }
-    return false; // 로그인 한 사용자가 보드에 속해 있지 않음
+//    Board board = boardRepository.findById(boardId).get();
+//    List<UserBoard> userBoards = userBoardRepository.findAllByBoardBoardId(boardId);
+//    for (UserBoard userBoard : userBoards) {
+//      if (userBoard.getUser().getUserId().equals(userId)) {
+//        return true; // 로그인 한 사용자가 보드에 속해 있음
+//      }
+//    }
+//    return false; // 로그인 한 사용자가 보드에 속해 있지 않음
+    return userBoardRepository.existsByBoardBoardIdAndUserUserId(boardId, userId);
   }
 
 
