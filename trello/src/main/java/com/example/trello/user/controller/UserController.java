@@ -3,6 +3,7 @@ package com.example.trello.user.controller;
 import com.example.trello.common.dto.ResponseDto;
 import com.example.trello.security.UserDetailsImpl;
 import com.example.trello.user.dto.InActiveResponseDto;
+import com.example.trello.user.dto.MyBoardUserResponseDto;
 import com.example.trello.user.service.UserService;
 import com.example.trello.user.dto.LoginRequestDto;
 import com.example.trello.user.dto.ProfileRequestDto;
@@ -83,7 +84,22 @@ public class UserController {
 	@GetMapping("/users")
 	public ResponseEntity<ResponseDto> getInActiveUserList(@RequestParam("active") boolean active) {
 		List<InActiveResponseDto> response = userService.getInActiveUserList(active);
-		return ResponseEntity.ok().body(ResponseDto.success(200,response));
+		return ResponseEntity.ok().body(ResponseDto.success(200, response));
+	}
+
+//	@GetMapping("/users/myboard")
+//	public ResponseEntity<ResponseDto> getMyBoards(
+//		@AuthenticationPrincipal UserDetailsImpl userDetails) {
+//
+//	}
+
+	@GetMapping("/users/myboard")
+	public ResponseEntity<ResponseDto> getMyBoardUsers(
+		@RequestParam("boardNum") Long boardNum,
+		@AuthenticationPrincipal UserDetailsImpl userDetails) {
+		List<MyBoardUserResponseDto> response = userService.getMyBoardUsers(boardNum,
+			userDetails.getUser());
+		return ResponseEntity.ok().body(ResponseDto.success(200, response));
 	}
 
 	@DeleteMapping("/users/inactive")

@@ -3,6 +3,7 @@ package com.example.trello.user.service;
 import com.example.trello.jwt.JwtUtil;
 import com.example.trello.user.dto.InActiveResponseDto;
 import com.example.trello.user.dto.LoginRequestDto;
+import com.example.trello.user.dto.MyBoardUserResponseDto;
 import com.example.trello.user.dto.ProfileRequestDto;
 import com.example.trello.user.dto.ProfileResponseDto;
 import com.example.trello.user.dto.SignupRequestDto;
@@ -42,14 +43,6 @@ public class UserService {
         User user = new User(request, password);
         userRepository.save(user);
     }
-
-//	@Transactional(readOnly = true)
-//	public ProfileResponseDto getProfile(User user) {
-//		User findUser = userRepository.findById(user.getUserId())
-//			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
-//
-//		return new ProfileResponseDto(findUser);
-//	}
 
     @Transactional
     public void login(LoginRequestDto request, HttpServletResponse res) {
@@ -92,6 +85,7 @@ public class UserService {
 
         findUser.inActiveUser();
     }
+
     @Transactional(readOnly = true)
     public List<InActiveResponseDto> getInActiveUserList(boolean active) {
         List<InActiveResponseDto> response;
@@ -101,6 +95,22 @@ public class UserService {
             Collectors.toList());
 
         return response;
+    }
+
+    @Transactional(readOnly = true)
+    public List<MyBoardUserResponseDto> getMyBoardUsers(Long boardNum, User user) {
+        List<MyBoardUserResponseDto> response;
+
+        response = userRepository.getMyBoardUsers(boardNum).stream().map(m -> MyBoardUserResponseDto.builder().username(
+            m.getUsername()).role(m.getRole()).boardId(m.getBoardId()).build()).collect(
+            Collectors.toList());
+
+        for (int i = 0; i < response.size(); i++) {
+            if(user.getUsername().equals(response.get(i).getUsername())) {
+                return response;
+            }
+        }
+        throw new IllegalArgumentException("찾을 수 없습니다");
     }
 
 
