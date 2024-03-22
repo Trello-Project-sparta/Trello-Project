@@ -20,11 +20,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "columnList")
-public class columnList {
+public class ColumnList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long column_id;
+    private Long columnId;
 
     @Column(nullable = false)
     private String title;
@@ -35,5 +35,20 @@ public class columnList {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private Board board;
+
+
+    public ColumnList(String title, Integer sequence, Board board) {
+        this.title = title;
+        this.sequence = sequence;
+        this.board = board;
+    }
+
+    public void updateTitle(String title) {
+        this.title = title;
+    }
+
+    public void move(Integer sequence) {
+        this.sequence = sequence;
+    }
 
 }
