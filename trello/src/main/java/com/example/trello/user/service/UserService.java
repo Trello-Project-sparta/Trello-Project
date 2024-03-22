@@ -1,9 +1,17 @@
-package com.example.trello.user;
+package com.example.trello.user.service;
 
 import com.example.trello.jwt.JwtUtil;
+import com.example.trello.user.dto.InActiveResponseDto;
+import com.example.trello.user.dto.LoginRequestDto;
+import com.example.trello.user.dto.ProfileRequestDto;
+import com.example.trello.user.dto.ProfileResponseDto;
+import com.example.trello.user.dto.SignupRequestDto;
+import com.example.trello.user.entity.User;
+import com.example.trello.user.repository.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -43,6 +51,7 @@ public class UserService {
 //		return new ProfileResponseDto(findUser);
 //	}
 
+    @Transactional
     public void login(LoginRequestDto request, HttpServletResponse res) {
         String username = request.getUsername();
         String password = request.getPassword();
@@ -82,6 +91,16 @@ public class UserService {
             () -> new NoSuchElementException("존재하지 않는 회원입니다."));
 
         findUser.inActiveUser();
+    }
+    @Transactional(readOnly = true)
+    public List<InActiveResponseDto> getInActiveUserList(boolean active) {
+        List<InActiveResponseDto> response;
+
+        response = userRepository.getInActiveUserList(active).stream().map(m ->
+            InActiveResponseDto.builder().username(m).build()).collect(
+            Collectors.toList());
+
+        return response;
     }
 
 
