@@ -5,6 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41efee18-9271-4d0e-9d1d-77d0f98407b8" name="Changes" comment=":sparkles:">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/b5df790f-d94a-404e-855c-48e61f86cf1e.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/b5df790f-d94a-404e-855c-48e61f86cf1e/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/b5df790f-d94a-404e-855c-48e61f86cf1e/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/b5df790f-d94a-404e-855c-48e61f86cf1e/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/b5df790f-d94a-404e-855c-48e61f86cf1e/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/b5df790f-d94a-404e-855c-48e61f86cf1e/storage_v2/_src_/schema/trello.6CtozA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/trello.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24__3__20___2_24__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24__3__20___2_24__Changes_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/card/CardRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trello/src/main/resources/applicaton-secret.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trello/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/trello/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
@@ -17,7 +36,7 @@
       <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/common/exception/CustomErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/common/exception/CustomErrorCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/common/exception/CustomExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/common/exception/CustomExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/dto/CommentResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/dto/CommentResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/entitiy/Comment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/entitiy/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/entity/Comment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/repository/CommentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/config/WebSecurityConfig.java" afterDir="false" />
@@ -142,6 +161,7 @@
       <workItem from="1710912208779" duration="13662000" />
       <workItem from="1711094615481" duration="6232000" />
       <workItem from="1711157973902" duration="6000" />
+      <workItem from="1711164314849" duration="340000" />
     </task>
     <servers />
   </component>
