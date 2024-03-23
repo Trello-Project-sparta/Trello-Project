@@ -5,10 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41efee18-9271-4d0e-9d1d-77d0f98407b8" name="Changes" comment=":sparkles:">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/trello/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/src/main/resources/application-secret.properties" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/resources/application-secret.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/trello/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/trello/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/trello/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/trello/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/columnList/columnList.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/columnList/columnList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/Comment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/common/BaseEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/common/exception/CustomErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/common/exception/CustomErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/common/exception/CustomExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/common/exception/CustomExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/dto/CommentResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/dto/CommentResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/entitiy/Comment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/repository/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/service/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/java/com/example/trello/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/trello/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +39,7 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="trello" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -40,12 +49,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="comments" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -71,10 +85,10 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.TrelloApplication.executor&quot;: &quot;Coverage&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;comments&quot;,
+    &quot;Spring Boot.TrelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/comment&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jiwon/IdeaProjects/Trello-Project&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jiwon/IdeaProjects/Trello-Project/trello/src/main/java/com/example/trello/comment/common/exception&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -89,6 +103,15 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/common/exception" />
+      <recent name="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/exception" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.trello.comment.exception" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="TrelloApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="trello.main" />
@@ -116,6 +139,9 @@
       <workItem from="1710748730106" duration="1479000" />
       <workItem from="1710750405387" duration="7419000" />
       <workItem from="1710841593541" duration="1239000" />
+      <workItem from="1710912208779" duration="13662000" />
+      <workItem from="1711094615481" duration="6232000" />
+      <workItem from="1711157973902" duration="6000" />
     </task>
     <servers />
   </component>

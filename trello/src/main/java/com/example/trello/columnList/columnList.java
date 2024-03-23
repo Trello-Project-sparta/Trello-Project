@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "column")
+@Table(name = "columnlist")
 public class columnList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

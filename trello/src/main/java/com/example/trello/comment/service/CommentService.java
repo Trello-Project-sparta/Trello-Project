@@ -1,15 +1,18 @@
 package com.example.trello.comment.service;
 
 import com.example.trello.card.Card;
+import com.example.trello.card.CardRepository;
 import com.example.trello.columns.CommonResponseDto;
 import com.example.trello.comment.common.exception.CustomErrorCode;
 import com.example.trello.comment.common.exception.CustomException;
 import com.example.trello.comment.dto.CommentRequestDto;
 import com.example.trello.comment.dto.CommentResponseDto;
-import com.example.trello.comment.entitiy.Comment;
+import com.example.trello.comment.entity.Comment;
 import com.example.trello.comment.repository.CommentRepository;
 import com.example.trello.security.UserDetailsImpl;
 import com.example.trello.user.User;
+import com.example.trello.userBoard.entity.UserBoard;
+import com.example.trello.userBoard.repository.UserBoardRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,18 +25,22 @@ public class CommentService {
 
   private final CommentRepository commentRepository;
   private final CardRepository cardRepository;
+  private final UserBoardRepository userBoardRepository;
 
   @Transactional
   public CommonResponseDto createComment(Long cardId, UserDetailsImpl userDetails,CommentRequestDto commentRequestDto) {
     Card card = cardRepository.findById(cardId)
-        .orElseThrow(() -> new CustomException(CustomErrorCode.CARD_NOT_FOUND_EXCEPTION, 404));
+        .orElseThrow(() -> new CustomException(CustomErrorCode.CARD_NOT_FOUND_EXCEPTION, 404))
+        .getCard();
 
     User user =userDetails.getUser();
+
+    UserBoard userBoard = userBoardRepository.findById(1L).orElseThrow();
 
     Comment comment = Comment.builder()
         .content(commentRequestDto.getContent())
         .card(card)
-        .user(user)
+        .userBoard(userBoard)
         .build();
 
     commentRepository.save(comment);

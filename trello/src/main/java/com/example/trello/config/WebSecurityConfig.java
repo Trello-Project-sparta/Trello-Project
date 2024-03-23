@@ -1,6 +1,8 @@
 package com.example.trello.config;
 
 
+import static com.example.trello.user.QUser.user;
+
 import com.example.trello.jwt.JwtUtil;
 import com.example.trello.security.JwtAuthenticationFilter;
 import com.example.trello.security.JwtAuthorizationFilter;
@@ -21,13 +23,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity // Spring Security 지원을 가능하게 함
-@RequiredArgsConstructor
+
 public class WebSecurityConfig {
 
     private final JwtUtil jwtUtil;
     private final UserDetailsServiceImpl userDetailsService;
     private final AuthenticationConfiguration authenticationConfiguration;
 
+    public WebSecurityConfig (JwtUtil jwtUtil, UserDetailsServiceImpl userDetailsService, AuthenticationConfiguration authenticationConfiguration) {
+        this.jwtUtil = jwtUtil;
+        this.userDetailsService = userDetailsService;
+        this.authenticationConfiguration = authenticationConfiguration;
+    }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
         throws Exception {
@@ -45,6 +52,7 @@ public class WebSecurityConfig {
         filter.setAuthenticationManager(authenticationManager(authenticationConfiguration));
         return filter;
     }
+
 
     @Bean
     public JwtAuthorizationFilter jwtAuthorizationFilter() {

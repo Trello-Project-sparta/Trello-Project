@@ -1,6 +1,6 @@
 package com.example.trello.comment.dto;
 
-import com.example.trello.comment.entitiy.Comment;
+import com.example.trello.comment.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,10 +26,10 @@ public class CommentResponseDto {
         comment.getId(),
         comment.getContent(),
         comment.getCard().getCardId(),
-        comment.getUser().getUserId(),
-        comment.getUser().getUsername(),
+        comment.getUserBoard().getUserBoardId(),
+        comment.getUserBoard().getUser().getUsername(),
         comment.getCreatedAt().toString(),
-        comment.getLastModifiedAt().toString()
+        comment.getModifiedAt().toString()
     );
   }
 }

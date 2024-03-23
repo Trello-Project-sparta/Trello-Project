@@ -1,5 +1,6 @@
 package com.example.trello.security;
 
+import com.example.trello.jwt.JwtUtil;
 import com.example.trello.user.LoginRequestDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;

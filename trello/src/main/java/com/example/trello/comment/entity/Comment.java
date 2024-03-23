@@ -1,9 +1,8 @@
-package com.example.trello.comment.entitiy;
+package com.example.trello.comment.entity;
 
 import com.example.trello.card.Card;
-import com.example.trello.comment.common.BaseEntity;
-import com.example.trello.user.User;
-import com.example.trello.userBoard.UserBoard;
+import com.example.trello.common.util.Timestamped;
+import com.example.trello.userBoard.entity.UserBoard;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Comment extends BaseEntity {
+public class Comment extends Timestamped {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
