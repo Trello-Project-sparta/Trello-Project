@@ -5,7 +5,7 @@ import com.example.trello.global.exception.InvalidUserException;
 import com.example.trello.global.exception.NotFoundBoardException;
 import com.example.trello.global.exception.NotFoundColumnListException;
 import com.example.trello.global.exception.NotFoundUserBoardException;
-import com.example.trello.global.exception.NotfoundUserException;
+import com.example.trello.global.exception.NotFoundUserException;
 import com.example.trello.global.exception.dto.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,8 +41,8 @@ public class GlobalExceptionHandler {
             .body(new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
     }
 
-    @ExceptionHandler(NotfoundUserException.class)
-    public ResponseEntity<ErrorResponseDto> handleNotfoundUserException(NotfoundUserException e) {
+    @ExceptionHandler(NotFoundUserException.class)
+    public ResponseEntity<ErrorResponseDto> handleNotfoundUserException(NotFoundUserException e) {
         return ResponseEntity.badRequest()
             .body(new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
     }
