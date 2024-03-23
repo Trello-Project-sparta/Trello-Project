@@ -1,8 +1,8 @@
 package com.example.trello.card;
 
 
-import com.example.trello.columnList.ColumnListRepository;
 import com.example.trello.columnList.entity.ColumnList;
+import com.example.trello.columnList.repository.ColumnListRepository;
 import com.example.trello.global.exception.NotFoundUserException;
 import com.example.trello.user.User;
 import com.example.trello.user.UserRepository;
