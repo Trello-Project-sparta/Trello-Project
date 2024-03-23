@@ -6,11 +6,12 @@ import com.example.trello.board.entity.Board;
 import com.example.trello.board.repository.BoardRepository;
 import com.example.trello.global.exception.InvalidUserException;
 import com.example.trello.global.exception.NotFoundBoardException;
-import com.example.trello.global.exception.NotFoundTeamException;
+import com.example.trello.global.exception.NotFoundUserBoardException;
 import com.example.trello.user.entity.User;
 import com.example.trello.userBoard.entity.UserBoard;
 import com.example.trello.userBoard.entity.UserRoleEnum;
 import com.example.trello.userBoard.repository.UserBoardRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -43,8 +44,9 @@ public class BoardService {
         Board board = boardRepository.findById(boardId)
             .orElseThrow(NotFoundBoardException::new);
 
-        UserBoard userBoard = userBoardRepository.findByUserAndBoard(user, board)
-            .orElseThrow(NotFoundTeamException::new);
+        UserBoard userBoard = userBoardRepository.findByBoardBoardIdAndUserUserId(user.getUserId(),
+                board.getBoardId())
+            .orElseThrow(NotFoundUserBoardException::new);
 
         if (!userBoard.getUser().getUserId().equals(user.getUserId())) {
             throw new InvalidUserException();
@@ -62,8 +64,9 @@ public class BoardService {
         Board board = boardRepository.findById(boardId)
             .orElseThrow(NotFoundBoardException::new);
 
-        UserBoard userBoard = userBoardRepository.findByUserAndBoard(user, board)
-            .orElseThrow(NotFoundTeamException::new);
+        UserBoard userBoard = userBoardRepository.findByBoardBoardIdAndUserUserId(user.getUserId(),
+                board.getBoardId())
+            .orElseThrow(NotFoundUserBoardException::new);
 
         if (!userBoard.getUser().getUserId().equals(user.getUserId())) {
             throw new InvalidUserException();
@@ -72,14 +75,25 @@ public class BoardService {
     }
 
 
-    public List<BoardResponseDto> searchBoard(String search) {
-        List<Board> boardList = boardRepository.searchByAny(search);
+    public List<BoardResponseDto> getAllBoard(User user, String search) {
+        List<UserBoard> userBoardList = userBoardRepository.findAllByUserUserIdAndRole(
+            user.getUserId(), UserRoleEnum.HOST);
+
+        List<Long> boardIdList = new ArrayList<>();
+
+        for (UserBoard userBoard : userBoardList) {
+            boardIdList.add(userBoard.getBoard().getBoardId());
+        }
+
+        List<Board> boardList = boardRepository.searchByBoardIdIn(boardIdList, search);
 
         return boardList.stream().map(BoardResponseDto::new).collect(Collectors.toList());
     }
+
 
     public Board findById(Long boardId) {
         return boardRepository.findById(boardId)
             .orElseThrow(NotFoundBoardException::new);
     }
+
 }

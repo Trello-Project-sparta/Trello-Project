@@ -2,13 +2,16 @@ package com.example.trello.userBoard.service;
 
 import com.example.trello.board.entity.Board;
 import com.example.trello.board.service.BoardService;
-import com.example.trello.global.exception.NotfoundUserException;
+import com.example.trello.global.exception.InvalidInviteRightException;
+import com.example.trello.global.exception.NotFoundUserBoardException;
+import com.example.trello.global.exception.NotFoundUserException;
 import com.example.trello.user.entity.User;
 import com.example.trello.user.service.UserService;
 import com.example.trello.userBoard.dto.UserBoardRequestDto;
 import com.example.trello.userBoard.dto.UserBoardResponseDto;
 import com.example.trello.userBoard.entity.UserBoard;
 import com.example.trello.userBoard.entity.UserRoleEnum;
+import com.example.trello.userBoard.repository.UserBoardBulkRepository;
 import com.example.trello.userBoard.repository.UserBoardRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +26,17 @@ public class UserBoardService {
     private final BoardService boardService;
     private final UserService userService;
     private final UserBoardRepository userBoardRepository;
+    private final UserBoardBulkRepository userBoardBulkRepository;
 
     @Transactional
     public UserBoardResponseDto addCollaborator(Long boardId,
-        UserBoardRequestDto userBoardRequestDto) {
+        UserBoardRequestDto userBoardRequestDto, User hostUser) {
+
+        if (!userBoardRepository.findByBoardBoardIdAndUserUserId(boardId, hostUser.getUserId())
+            .orElseThrow(NotFoundUserBoardException::new).getRole().equals(UserRoleEnum.HOST)) {
+            throw new InvalidInviteRightException(hostUser.getUsername());
+        }
+
         Board board = boardService.findById(boardId);
 
         List<String> emailList = new ArrayList<>();
@@ -39,7 +49,8 @@ public class UserBoardService {
             for (User user : userList) {
                 userBoardList.add(new UserBoard(user, board, UserRoleEnum.GUEST));
             }
-            userBoardRepository.saveAll(userBoardList);
+            userBoardBulkRepository.saveBulk(userBoardList);
+
         }
 
         List<UserBoard> savedUserBoardList = userBoardRepository.findAllByBoardBoardId(boardId);
@@ -53,7 +64,13 @@ public class UserBoardService {
 
     @Transactional
     public UserBoardResponseDto deleteCollaborator(Long boardId,
-        UserBoardRequestDto userBoardRequestDto) {
+        UserBoardRequestDto userBoardRequestDto, User hostUser) {
+
+        if (!userBoardRepository.findByBoardBoardIdAndUserUserId(boardId, hostUser.getUserId())
+            .orElseThrow().getRole().equals(UserRoleEnum.HOST)) {
+            throw new InvalidInviteRightException(hostUser.getUsername());
+        }
+
         Board board = boardService.findById(boardId);
 
         List<String> emailList = new ArrayList<>();
@@ -66,7 +83,7 @@ public class UserBoardService {
         if (userBoardRepository.existsByUserInAndBoardBoardId(userList, boardId)) {
             userBoardRepository.deleteAll(userBoardList);
         } else {
-            throw new NotfoundUserException();
+            throw new NotFoundUserException();
         }
 
         List<UserBoard> savedUserBoardList = userBoardRepository.findAllByBoardBoardId(boardId);

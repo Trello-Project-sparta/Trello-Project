@@ -45,4 +45,11 @@ public class UserBoard {
         this.role = role;
     }
 
+    public UserBoard(Long userBoardId, User user, Board board, UserRoleEnum role) {
+        this.userBoardId = userBoardId;
+        this.user = user;
+        this.board = board;
+        this.role = role;
+    }
+
 }
