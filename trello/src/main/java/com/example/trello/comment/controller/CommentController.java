@@ -20,14 +20,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/boards/{boardsId}/columns/{columnId}/cards/{cardId}/comments")
+// [GET] /api/boards/{boardsId}/columns/{columnId}/cards/{cardId}/comments
+// [GET] /api/comments?cardId={cardId}
+// /api/comments?cardId={cardId}
+@RequestMapping("/api/boards/{boardId}/columns/{columnId}/cards/{cardId}/comments")
 @RequiredArgsConstructor
 public class CommentController {
 
   private final CommentService commentService;
 
   @GetMapping
-  public ResponseEntity<List<CommentResponseDto>> getAllComments() {
+  public ResponseEntity<List<CommentResponseDto>> getAllComments(@PathVariable Long cardId) {
     List<CommentResponseDto> comments = commentService.getAllComments();
     return ResponseEntity.ok(comments);
   }
@@ -36,10 +39,12 @@ public class CommentController {
   public ResponseEntity<CommonResponseDto> createComment(
       @RequestBody CommentRequestDto commentRequestDto,
       @PathVariable(name = "cardId") Long cardId,
+      @PathVariable(name = "boardId") Long boardId,
       @AuthenticationPrincipal UserDetailsImpl userDetails
-
   ) {
-    CommonResponseDto response = commentService.createComment(cardId,userDetails,commentRequestDto);
+
+    CommonResponseDto response = commentService.createComment(cardId, boardId, userDetails,
+        commentRequestDto);
     return ResponseEntity.status(response.getStatusCode()).body(response);
   }
 
