@@ -10,7 +10,6 @@ import com.example.trello.userBoard.repository.UserBoardRepository;
 
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +28,8 @@ public class CardService {
   public CardResponseDto createCard(Long boardId, Long columnId, User creator,
       CardRequestDto cardRequestDto) {
     if (validationUser(boardId, creator.getUserId())) {
-      UserBoard userBoard = userBoardRepository.findByBoardBoardIdAndUserUserId(boardId, creator.getUserId()).orElseThrow();
+      UserBoard userBoard = userBoardRepository.findByBoardBoardIdAndUserUserId(boardId,
+          creator.getUserId()).orElseThrow();
       ColumnList column = columnListRepository.findById(columnId).orElseThrow();
       Card card = new Card(cardRequestDto, userBoard, column);
       cardRepository.save(card);
@@ -57,8 +57,9 @@ public class CardService {
       Card card = cardRepository.findById(cardId).orElseThrow();
       card.updateDeadline(deadline);
       return new CardResponseDto(card);
+    } else {
+      throw new NotFoundUserException();
     }
-    else {throw new NotFoundUserException();}
 
   }
 
@@ -68,43 +69,49 @@ public class CardService {
       ColumnList column = columnListRepository.findById(columnId).orElseThrow();
       card.updateColumn(column);
       return new CardResponseDto(card);
+    } else {
+      throw new NotFoundUserException();
     }
-    else {throw new NotFoundUserException();}
 
   }
 
   public WorkerResponseDto updateWorker(User user, Long boardId, Long workerId, Long cardId) {
     if (validationUser(boardId, user.getUserId()) && validationUser(boardId, workerId)) {
       Card card = cardRepository.findById(cardId).orElseThrow();
-      UserBoard worker = userBoardRepository.findByBoardBoardIdAndUserUserId(boardId,workerId).orElseThrow();
+      UserBoard worker = userBoardRepository.findByBoardBoardIdAndUserUserId(boardId, workerId)
+          .orElseThrow();
       card.getWorkers().add(worker);
       cardRepository.save(card);
       return new WorkerResponseDto(card);
+    } else {
+      throw new NotFoundUserException();
     }
-    else {throw new NotFoundUserException();}
 
   }
 
   public WorkerResponseDto deleteWorker(User user, Long boardId, Long workerId, Long cardId) {
     if (validationUser(boardId, user.getUserId()) && validationUser(boardId, workerId)) {
       Card card = cardRepository.findById(cardId).orElseThrow();
-      UserBoard worker = userBoardRepository.findByBoardBoardIdAndUserUserId(boardId,workerId).orElseThrow();
+      UserBoard worker = userBoardRepository.findByBoardBoardIdAndUserUserId(boardId, workerId)
+          .orElseThrow();
       card.getWorkers().remove(worker);
       cardRepository.save(card);
       return new WorkerResponseDto(card);
+    } else {
+      throw new NotFoundUserException();
     }
-    else {throw new NotFoundUserException();}
 
   }
 
 
   public void deleteCard(Long boardId, Long cardId, User user) {
-    if (validationUser(boardId, user.getUserId())){
+    if (validationUser(boardId, user.getUserId())) {
       Card card = cardRepository.findById(cardId)
           .orElseThrow();
-   cardRepository.delete(card);
+      cardRepository.delete(card);
+    } else {
+      throw new NotFoundUserException();
     }
-    else {throw new NotFoundUserException();}
 
   }
 

@@ -1,6 +1,5 @@
 package com.example.trello.card;
 
-import com.example.trello.userBoard.entity.UserBoard;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Getter;
@@ -9,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class WorkerResponseDto {
+
   private List<String> workernames;
 
   public WorkerResponseDto(Card card) {
