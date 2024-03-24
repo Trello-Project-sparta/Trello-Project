@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41efee18-9271-4d0e-9d1d-77d0f98407b8" name="Changes" comment=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-3">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b5df790f-d94a-404e-855c-48e61f86cf1e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b5df790f-d94a-404e-855c-48e61f86cf1e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/.gradle/8.6/checksums/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/.gradle/8.6/checksums/md5-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/.gradle/8.6/checksums/sha1-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/.gradle/8.6/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
-    </list>
+    <list default="true" id="41efee18-9271-4d0e-9d1d-77d0f98407b8" name="Changes" comment=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-5" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -154,7 +143,7 @@
       <workItem from="1711094615481" duration="6232000" />
       <workItem from="1711157973902" duration="6000" />
       <workItem from="1711164314849" duration="11464000" />
-      <workItem from="1711256197363" duration="6285000" />
+      <workItem from="1711256197363" duration="6651000" />
     </task>
     <task id="LOCAL-00001" summary=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료">
       <option name="closed" value="true" />
@@ -172,7 +161,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711262087399</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-4">
+      <option name="closed" value="true" />
+      <created>1711262711135</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711262711135</updated>
+    </task>
+    <task id="LOCAL-00004" summary=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-5">
+      <option name="closed" value="true" />
+      <created>1711262848594</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711262848594</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +209,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료" />
     <MESSAGE value=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-3" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-3" />
+    <MESSAGE value=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-4" />
+    <MESSAGE value=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-5" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
