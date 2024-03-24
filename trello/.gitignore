@@ -44,3 +44,5 @@ application-secret.properties
 /.gradle/
 /.gradle/
 build
+/.gradle/
+/.gradle/
