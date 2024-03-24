@@ -3,6 +3,7 @@ package com.example.trello.user.service;
 import com.example.trello.jwt.JwtUtil;
 import com.example.trello.user.dto.InActiveResponseDto;
 import com.example.trello.user.dto.LoginRequestDto;
+import com.example.trello.user.dto.MyActivityResponseDto;
 import com.example.trello.user.dto.MyBoardUserResponseDto;
 import com.example.trello.user.dto.ProfileRequestDto;
 import com.example.trello.user.dto.ProfileResponseDto;
@@ -101,9 +102,10 @@ public class UserService {
     public List<MyBoardUserResponseDto> getMyBoardUsers(Long boardNum, User user) {
         List<MyBoardUserResponseDto> response;
 
-        response = userRepository.getMyBoardUsers(boardNum).stream().map(m -> MyBoardUserResponseDto.builder().username(
-            m.getUsername()).role(m.getRole()).boardId(m.getBoardId()).build()).collect(
-            Collectors.toList());
+		response = userRepository.getMyBoardUsers(boardNum).stream()
+			.map(m -> MyBoardUserResponseDto.builder().username(m.getUsername())
+				.role(m.getRole()).boardId(m.getBoardId()).build()).collect(
+				Collectors.toList());
 
         for (int i = 0; i < response.size(); i++) {
             if(user.getUsername().equals(response.get(i).getUsername())) {
@@ -113,8 +115,20 @@ public class UserService {
         throw new IllegalArgumentException("찾을 수 없습니다");
     }
 
+	@Transactional(readOnly = true)
+	public List<MyActivityResponseDto> getMyActivities(String username) {
+		List<MyActivityResponseDto> response;
 
-    public List<User> findAllByEmailIn(List<String> emailList) {
-        return userRepository.findAllByEmailIn(emailList);
-    }
+		response = userRepository.getMyActivities(username).stream()
+			.map(m -> MyActivityResponseDto.builder().username(m.getUsername())
+				.activity(m.getActivity()).build()).collect(
+				Collectors.toList());
+
+		return response;
+	}
+
+
+	public List<User> findAllByEmailIn(List<String> emailList) {
+		return userRepository.findAllByEmailIn(emailList);
+	}
 }

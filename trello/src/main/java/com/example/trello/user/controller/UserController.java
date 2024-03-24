@@ -3,6 +3,7 @@ package com.example.trello.user.controller;
 import com.example.trello.common.dto.ResponseDto;
 import com.example.trello.security.UserDetailsImpl;
 import com.example.trello.user.dto.InActiveResponseDto;
+import com.example.trello.user.dto.MyActivityResponseDto;
 import com.example.trello.user.dto.MyBoardUserResponseDto;
 import com.example.trello.user.service.UserService;
 import com.example.trello.user.dto.LoginRequestDto;
@@ -87,11 +88,17 @@ public class UserController {
 		return ResponseEntity.ok().body(ResponseDto.success(200, response));
 	}
 
-//	@GetMapping("/users/myboard")
-//	public ResponseEntity<ResponseDto> getMyBoards(
-//		@AuthenticationPrincipal UserDetailsImpl userDetails) {
-//
-//	}
+	@GetMapping("/users/myactivity")
+	public ResponseEntity<ResponseDto> getMyActivities(
+		@RequestParam String username,
+		@AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+		if(userDetails.getUser().getUsername().equals(username)) {
+			List<MyActivityResponseDto> response = userService.getMyActivities(username);
+			return ResponseEntity.ok().body(ResponseDto.success(200,response));
+		}
+		return ResponseEntity.badRequest().body(ResponseDto.fail(400, "찾을 수 없습니다"));
+	}
 
 	@GetMapping("/users/myboard")
 	public ResponseEntity<ResponseDto> getMyBoardUsers(
