@@ -49,6 +49,12 @@ public class User {
         this.email = request.getEmail();
         this.password = password;
     }
+    public User(Long userId, SignupRequestDto request) {
+        this.userId = userId;
+        this.username = request.getUsername();
+        this.email = request.getEmail();
+        this.password = request.getPassword();
+    }
 
     public User(SignupRequestDto request) {
         this.username = request.getUsername();
