@@ -29,25 +29,22 @@ public class CommentService {
 
   @Transactional
   public CommonResponseDto createComment(Long id, Long boardId, UserDetailsImpl userDetails,CommentRequestDto commentRequestDto) {
+    System.out.println(id);
     Card card = cardRepository.findById(id)
         .orElseThrow(() -> new CustomException(CustomErrorCode.CARD_NOT_FOUND_EXCEPTION, 400));
 
-    System.out.println("card:"+card.toString());
+
 
     User user = userDetails.getUser();
 
-    System.out.println("user:"+user.getUserId());
-
     UserBoard userBoard = userBoardRepository.findById(boardId).orElseThrow();
 
-    System.out.println("userboard:"+userBoard.getUserBoardId());
     Comment comment = Comment.builder()
         .content(commentRequestDto.getContent())
         .card(card)
         .userBoard(userBoard)
         .build();
 
-    System.out.println("comment:"+comment);
     commentRepository.save(comment);
     return new CommonResponseDto("댓글 생성 완료", 200);
   }
