@@ -1127,7 +1127,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="304" parent="1" name="trello">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-03-23.06:03:51</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-03-24.06:13:59</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="305" parent="1" name="jiwon317">
@@ -1221,241 +1221,279 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="326" parent="312" name="card_id">
-      <AutoIncrement>124</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="327" parent="312" name="cardname">
-      <DasType>varchar(255)|0s</DasType>
+    <column id="327" parent="312" name="column_id">
+      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="328" parent="312" name="color">
-      <DasType>varchar(255)|0s</DasType>
+    <column id="328" parent="312" name="creator_id">
+      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
     <column id="329" parent="312" name="deadline">
       <DasType>datetime(6)|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="330" parent="312" name="description">
-      <DasType>varchar(255)|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="330" parent="312" name="worker_id">
+      <DasType>bigint|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="331" parent="312" name="PRIMARY">
+    <column id="331" parent="312" name="cardname">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="332" parent="312" name="color">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="333" parent="312" name="description">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <foreign-key id="334" parent="312" name="FKb59vxq3h176bwsv0sayjy2omx">
+      <ColNames>column_id</ColNames>
+      <RefColNames>column_id</RefColNames>
+      <RefTableName>column_list</RefTableName>
+    </foreign-key>
+    <foreign-key id="335" parent="312" name="FKbgjp2v8t1lhy8w9htwfkhbmqv">
+      <ColNames>creator_id</ColNames>
+      <RefColNames>user_id</RefColNames>
+      <RefTableName>user</RefTableName>
+    </foreign-key>
+    <foreign-key id="336" parent="312" name="FK2y7w0yt22kbql1214fsdx74l9">
+      <ColNames>worker_id</ColNames>
+      <RefColNames>user_id</RefColNames>
+      <RefTableName>user</RefTableName>
+    </foreign-key>
+    <index id="337" parent="312" name="PRIMARY">
       <ColNames>card_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="332" parent="312" name="PRIMARY">
+    <index id="338" parent="312" name="FKb59vxq3h176bwsv0sayjy2omx">
+      <ColNames>column_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="339" parent="312" name="FKbgjp2v8t1lhy8w9htwfkhbmqv">
+      <ColNames>creator_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="340" parent="312" name="FK2y7w0yt22kbql1214fsdx74l9">
+      <ColNames>worker_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="341" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="333" parent="313" name="column_id">
-      <AutoIncrement>124</AutoIncrement>
-      <DasType>bigint|0s</DasType>
+    <column id="342" parent="313" name="sequence">
+      <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="334" parent="313" name="sequence">
-      <DasType>int|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="343" parent="313" name="board_id">
+      <DasType>bigint|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="335" parent="313" name="title">
-      <DasType>varchar(255)|0s</DasType>
+    <column id="344" parent="313" name="column_id">
+      <AutoIncrement>1</AutoIncrement>
+      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="336" parent="313" name="board_id">
-      <DasType>bigint|0s</DasType>
+    <column id="345" parent="313" name="title">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <foreign-key id="337" parent="313" name="FK5y3qn2y8s9043wudd95ul5uv1">
+    <foreign-key id="346" parent="313" name="FK5y3qn2y8s9043wudd95ul5uv1">
       <ColNames>board_id</ColNames>
       <RefColNames>board_id</RefColNames>
       <RefTableName>board</RefTableName>
     </foreign-key>
-    <index id="338" parent="313" name="PRIMARY">
+    <index id="347" parent="313" name="PRIMARY">
       <ColNames>column_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="339" parent="313" name="FK5y3qn2y8s9043wudd95ul5uv1">
+    <index id="348" parent="313" name="FK5y3qn2y8s9043wudd95ul5uv1">
       <ColNames>board_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="340" parent="313" name="PRIMARY">
+    <key id="349" parent="313" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="341" parent="314" name="column_id">
-      <AutoIncrement>1</AutoIncrement>
+    <column id="350" parent="314" name="column_id">
+      <AutoIncrement>123</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="342" parent="314" name="title">
+    <column id="351" parent="314" name="title">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <index id="343" parent="314" name="PRIMARY">
+    <index id="352" parent="314" name="PRIMARY">
       <ColNames>column_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="344" parent="314" name="PRIMARY">
+    <key id="353" parent="314" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="345" parent="315" name="id">
-      <AutoIncrement>1</AutoIncrement>
+    <column id="354" parent="315" name="card_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="346" parent="315" name="created_at">
+    <column id="355" parent="315" name="created_at">
       <DasType>datetime(6)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="347" parent="315" name="modified_at">
-      <DasType>datetime(6)|0s</DasType>
+    <column id="356" parent="315" name="id">
+      <AutoIncrement>1</AutoIncrement>
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="348" parent="315" name="content">
-      <DasType>varchar(255)|0s</DasType>
-      <NotNull>1</NotNull>
+    <column id="357" parent="315" name="modified_at">
+      <DasType>datetime(6)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="349" parent="315" name="card_id">
+    <column id="358" parent="315" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="350" parent="315" name="user_id">
-      <DasType>bigint|0s</DasType>
+    <column id="359" parent="315" name="content">
+      <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <foreign-key id="351" parent="315" name="FKqgv5aujiclf0iihwxf4gmkf18">
+    <foreign-key id="360" parent="315" name="FKqgv5aujiclf0iihwxf4gmkf18">
       <ColNames>card_id</ColNames>
       <RefColNames>card_id</RefColNames>
       <RefTableName>card</RefTableName>
     </foreign-key>
-    <foreign-key id="352" parent="315" name="FKlsg6uwgoxc3cawc4k0xhxkqq6">
+    <foreign-key id="361" parent="315" name="FKlsg6uwgoxc3cawc4k0xhxkqq6">
       <ColNames>user_id</ColNames>
       <RefColNames>user_board_id</RefColNames>
       <RefTableName>user_board</RefTableName>
     </foreign-key>
-    <index id="353" parent="315" name="PRIMARY">
+    <index id="362" parent="315" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="354" parent="315" name="FKqgv5aujiclf0iihwxf4gmkf18">
+    <index id="363" parent="315" name="FKqgv5aujiclf0iihwxf4gmkf18">
       <ColNames>card_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="355" parent="315" name="FKlsg6uwgoxc3cawc4k0xhxkqq6">
+    <index id="364" parent="315" name="FKlsg6uwgoxc3cawc4k0xhxkqq6">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="356" parent="315" name="PRIMARY">
+    <key id="365" parent="315" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="357" parent="316" name="user_id">
-      <AutoIncrement>2</AutoIncrement>
-      <DasType>bigint|0s</DasType>
+    <column id="366" parent="316" name="active">
+      <DasType>bit(1)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="358" parent="316" name="active">
-      <DasType>bit(1)|0s</DasType>
+    <column id="367" parent="316" name="user_id">
+      <AutoIncrement>1</AutoIncrement>
+      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="359" parent="316" name="email">
+    <column id="368" parent="316" name="email">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="360" parent="316" name="password">
+    <column id="369" parent="316" name="password">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="361" parent="316" name="user_info">
+    <column id="370" parent="316" name="user_info">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="362" parent="316" name="username">
+    <column id="371" parent="316" name="username">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <index id="363" parent="316" name="PRIMARY">
+    <index id="372" parent="316" name="PRIMARY">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="364" parent="316" name="PRIMARY">
+    <key id="373" parent="316" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="365" parent="317" name="user_board_id">
-      <AutoIncrement>124</AutoIncrement>
+    <column id="374" parent="317" name="board_id">
       <DasType>bigint|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="366" parent="317" name="role">
-      <DasType>enum(&apos;HOST&apos;, &apos;GUEST&apos;)|0e</DasType>
+    <column id="375" parent="317" name="user_board_id">
+      <AutoIncrement>1</AutoIncrement>
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="367" parent="317" name="board_id">
+    <column id="376" parent="317" name="user_id">
       <DasType>bigint|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="368" parent="317" name="user_id">
-      <DasType>bigint|0s</DasType>
+    <column id="377" parent="317" name="role">
+      <DasType>enum(&apos;HOST&apos;, &apos;GUEST&apos;)|0e</DasType>
       <Position>4</Position>
     </column>
-    <foreign-key id="369" parent="317" name="FKtmjpuif5sbn7e6e9bl5vo0bd6">
+    <foreign-key id="378" parent="317" name="FKtmjpuif5sbn7e6e9bl5vo0bd6">
       <ColNames>board_id</ColNames>
       <RefColNames>board_id</RefColNames>
       <RefTableName>board</RefTableName>
     </foreign-key>
-    <foreign-key id="370" parent="317" name="FKhfgevw9wg1mt43a9qlhpcuxyw">
+    <foreign-key id="379" parent="317" name="FKhfgevw9wg1mt43a9qlhpcuxyw">
       <ColNames>user_id</ColNames>
       <RefColNames>user_id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
-    <index id="371" parent="317" name="PRIMARY">
+    <index id="380" parent="317" name="PRIMARY">
       <ColNames>user_board_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="372" parent="317" name="FKtmjpuif5sbn7e6e9bl5vo0bd6">
+    <index id="381" parent="317" name="FKtmjpuif5sbn7e6e9bl5vo0bd6">
       <ColNames>board_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="373" parent="317" name="FKhfgevw9wg1mt43a9qlhpcuxyw">
+    <index id="382" parent="317" name="FKhfgevw9wg1mt43a9qlhpcuxyw">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="374" parent="317" name="PRIMARY">
+    <key id="383" parent="317" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
