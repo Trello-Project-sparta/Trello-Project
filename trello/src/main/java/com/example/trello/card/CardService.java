@@ -5,11 +5,12 @@ import com.example.trello.columnList.entity.ColumnList;
 import com.example.trello.columnList.repository.ColumnListRepository;
 import com.example.trello.global.exception.NotFoundUserException;
 import com.example.trello.user.User;
-import com.example.trello.user.UserRepository;
+import com.example.trello.userBoard.entity.UserBoard;
 import com.example.trello.userBoard.repository.UserBoardRepository;
 
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,13 +25,13 @@ public class CardService {
 
   private final ColumnListRepository columnListRepository;
 
-  private final UserRepository userRepository;
 
   public CardResponseDto createCard(Long boardId, Long columnId, User creator,
       CardRequestDto cardRequestDto) {
     if (validationUser(boardId, creator.getUserId())) {
+      UserBoard userBoard = userBoardRepository.findByBoardBoardIdAndUserUserId(boardId, creator.getUserId()).orElseThrow();
       ColumnList column = columnListRepository.findById(columnId).orElseThrow();
-      Card card = new Card(cardRequestDto, creator, column);
+      Card card = new Card(cardRequestDto, userBoard, column);
       cardRepository.save(card);
       return new CardResponseDto(card);
     } else {
@@ -75,9 +76,22 @@ public class CardService {
   public WorkerResponseDto updateWorker(User user, Long boardId, Long workerId, Long cardId) {
     if (validationUser(boardId, user.getUserId()) && validationUser(boardId, workerId)) {
       Card card = cardRepository.findById(cardId).orElseThrow();
-      User worker = userRepository.findById(workerId).orElseThrow();
-      card.updateWorker(worker);
-      return new WorkerResponseDto(worker.getUsername());
+      UserBoard worker = userBoardRepository.findByBoardBoardIdAndUserUserId(boardId,workerId).orElseThrow();
+      card.getWorkers().add(worker);
+      cardRepository.save(card);
+      return new WorkerResponseDto(card);
+    }
+    else {throw new NotFoundUserException();}
+
+  }
+
+  public WorkerResponseDto deleteWorker(User user, Long boardId, Long workerId, Long cardId) {
+    if (validationUser(boardId, user.getUserId()) && validationUser(boardId, workerId)) {
+      Card card = cardRepository.findById(cardId).orElseThrow();
+      UserBoard worker = userBoardRepository.findByBoardBoardIdAndUserUserId(boardId,workerId).orElseThrow();
+      card.getWorkers().remove(worker);
+      cardRepository.save(card);
+      return new WorkerResponseDto(card);
     }
     else {throw new NotFoundUserException();}
 
@@ -86,7 +100,9 @@ public class CardService {
 
   public void deleteCard(Long boardId, Long cardId, User user) {
     if (validationUser(boardId, user.getUserId())){
-   cardRepository.deleteById(cardId);
+      Card card = cardRepository.findById(cardId)
+          .orElseThrow();
+   cardRepository.delete(card);
     }
     else {throw new NotFoundUserException();}
 
