@@ -50,6 +50,12 @@ public class User {
         this.password = password;
     }
 
+    public User(SignupRequestDto request) {
+        this.username = request.getUsername();
+        this.email = request.getEmail();
+        this.password = request.getPassword();
+    }
+
     public void updateProfile(ProfileRequestDto request) {
         this.username = request.getUsername();
         this.email = request.getEmail();

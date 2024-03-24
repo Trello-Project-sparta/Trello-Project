@@ -1,12 +1,12 @@
 package com.example.trello.user.dto;
 
-
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Builder
-public class MyActivityResponseDto {
+public class MyCommentResponseDto {
 	private String username;
-	private String activity;
+	private Long cardId;
+	private String content;
 }

@@ -3,8 +3,9 @@ package com.example.trello.user.service;
 import com.example.trello.jwt.JwtUtil;
 import com.example.trello.user.dto.InActiveResponseDto;
 import com.example.trello.user.dto.LoginRequestDto;
-import com.example.trello.user.dto.MyActivityResponseDto;
 import com.example.trello.user.dto.MyBoardUserResponseDto;
+import com.example.trello.user.dto.MyCardResponseDto;
+import com.example.trello.user.dto.MyCommentResponseDto;
 import com.example.trello.user.dto.ProfileRequestDto;
 import com.example.trello.user.dto.ProfileResponseDto;
 import com.example.trello.user.dto.SignupRequestDto;
@@ -108,21 +109,33 @@ public class UserService {
 				Collectors.toList());
 
         for (int i = 0; i < response.size(); i++) {
-            if(user.getUsername().equals(response.get(i).getUsername())) {
-                return response;
+            if(!user.getUsername().equals(response.get(i).getUsername())) {
+				throw new IllegalArgumentException("찾을 수 없습니다");
             }
         }
-        throw new IllegalArgumentException("찾을 수 없습니다");
+        return response;
     }
 
 	@Transactional(readOnly = true)
-	public List<MyActivityResponseDto> getMyActivities(String username) {
-		List<MyActivityResponseDto> response;
+	public List<MyCardResponseDto> getMyCards(User user) {
+		List<MyCardResponseDto> response;
 
-		response = userRepository.getMyActivities(username).stream()
-			.map(m -> MyActivityResponseDto.builder().username(m.getUsername())
-				.activity(m.getActivity()).build()).collect(
-				Collectors.toList());
+		response = userRepository.getMyCards(user.getUsername()).stream()
+			.map(m -> MyCardResponseDto.builder().username(m.getUsername())
+				.boardId(m.getBoardId()).cardname(m.getCardname()).build())
+			.collect(Collectors.toList());
+
+		return response;
+	}
+
+	@Transactional(readOnly = true)
+	public List<MyCommentResponseDto> getMyComments(User user) {
+		List<MyCommentResponseDto> response;
+
+		response = userRepository.getMyComments(user.getUsername()).stream()
+			.map(m -> MyCommentResponseDto.builder().username(m.getUsername())
+				.cardId(m.getCardId()).content(m.getContent()).build())
+			.collect(Collectors.toList());
 
 		return response;
 	}

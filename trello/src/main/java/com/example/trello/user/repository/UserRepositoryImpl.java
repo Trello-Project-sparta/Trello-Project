@@ -1,7 +1,11 @@
 package com.example.trello.user.repository;
 
 import com.example.trello.board.entity.QBoard;
+import com.example.trello.card.QCard;
+import com.example.trello.comment.QComment;
 import com.example.trello.user.dto.MyBoardUserDto;
+import com.example.trello.user.dto.MyCardDto;
+import com.example.trello.user.dto.MyCommentDto;
 import com.example.trello.user.entity.QUser;
 import com.example.trello.userBoard.entity.QUserBoard;
 import com.querydsl.core.types.Projections;
@@ -38,6 +42,38 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 			.from(user)
 			.innerJoin(userBoard).on(user.userId.eq(userBoard.user.userId)).fetchJoin()
 			.where(board.boardId.eq(boardNum))
+			.fetch();
+	}
+
+	@Override
+	public List<MyCardDto> getMyCards(String username) {
+		QUser user = QUser.user;
+		QUserBoard userBoard = QUserBoard.userBoard;
+		QCard card = QCard.card;
+
+		return jpaQueryFactory.select
+			(Projections.bean(MyCardDto.class, user.username,
+				userBoard.board.boardId, card.cardname))
+			.from(user)
+			.innerJoin(userBoard).on(user.userId.eq(userBoard.user.userId)).fetchJoin()
+			.innerJoin(card).on(userBoard.userBoardId.eq(card.userBoard.userBoardId)).fetchJoin()
+			.where(user.username.eq(username))
+			.fetch();
+	}
+
+	@Override
+	public List<MyCommentDto> getMyComments(String username) {
+		QUser user = QUser.user;
+		QUserBoard userBoard = QUserBoard.userBoard;
+		QComment comment = QComment.comment;
+
+		return jpaQueryFactory.select
+			(Projections.bean(MyCommentDto.class, user.username,
+				comment.card.cardId, comment.content))
+			.from(user)
+			.innerJoin(userBoard).on(user.userId.eq(userBoard.user.userId)).fetchJoin()
+			.innerJoin(comment).on(userBoard.userBoardId.eq(comment.userBoard.userBoardId)).fetchJoin()
+			.where(user.username.eq(username))
 			.fetch();
 	}
 }

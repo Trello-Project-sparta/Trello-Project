@@ -3,8 +3,9 @@ package com.example.trello.user.controller;
 import com.example.trello.common.dto.ResponseDto;
 import com.example.trello.security.UserDetailsImpl;
 import com.example.trello.user.dto.InActiveResponseDto;
-import com.example.trello.user.dto.MyActivityResponseDto;
 import com.example.trello.user.dto.MyBoardUserResponseDto;
+import com.example.trello.user.dto.MyCardResponseDto;
+import com.example.trello.user.dto.MyCommentResponseDto;
 import com.example.trello.user.service.UserService;
 import com.example.trello.user.dto.LoginRequestDto;
 import com.example.trello.user.dto.ProfileRequestDto;
@@ -88,16 +89,20 @@ public class UserController {
 		return ResponseEntity.ok().body(ResponseDto.success(200, response));
 	}
 
-	@GetMapping("/users/myactivity")
-	public ResponseEntity<ResponseDto> getMyActivities(
-		@RequestParam String username,
+	@GetMapping("/users/mycards")
+	public ResponseEntity<ResponseDto> getMyCards(
 		@AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-		if(userDetails.getUser().getUsername().equals(username)) {
-			List<MyActivityResponseDto> response = userService.getMyActivities(username);
-			return ResponseEntity.ok().body(ResponseDto.success(200,response));
-		}
-		return ResponseEntity.badRequest().body(ResponseDto.fail(400, "찾을 수 없습니다"));
+		List<MyCardResponseDto> response = userService.getMyCards(userDetails.getUser());
+		return ResponseEntity.ok().body(ResponseDto.success(200,response));
+	}
+
+	@GetMapping("/users/mycomments")
+	public ResponseEntity<ResponseDto> getMyComments(
+		@AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+		List<MyCommentResponseDto> response = userService.getMyComments(userDetails.getUser());
+		return ResponseEntity.ok().body(ResponseDto.success(200,response));
 	}
 
 	@GetMapping("/users/myboard")
