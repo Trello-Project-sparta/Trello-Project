@@ -9,9 +9,6 @@ https://teamsparta.notion.site/99fb7650c9a54aadbd517761b983dfcd?v=08a458d5504e48
 
 
 
-![erd 다이어그램](https://github.com/Trello-Project-sparta/Trello-Project/assets/118720175/09e4d2d2-df4c-4b53-b18a-f72fcfd9d695)
 
 
 
-
-![게시물 Wire Frame](https://github.com/Trello-Project-sparta/Trello-Project/assets/118720175/6a2a1391-7cf2-463d-a656-be62c33f8cf4)
