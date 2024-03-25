@@ -8,6 +8,8 @@ API 명세서
 https://teamsparta.notion.site/99fb7650c9a54aadbd517761b983dfcd?v=08a458d5504e481e8617b5a442f74d4a
 
 
+쿼리 최적화 과제
+https://velog.io/@beunchoi/explain-%EC%8B%A4%ED%96%89-%EB%B0%8F-%EC%BF%BC%EB%A6%AC-%EC%B5%9C%EC%A0%81%ED%99%94
 
 
 
