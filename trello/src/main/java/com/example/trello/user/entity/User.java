@@ -1,5 +1,7 @@
-package com.example.trello.user;
+package com.example.trello.user.entity;
 
+import com.example.trello.user.dto.ProfileRequestDto;
+import com.example.trello.user.dto.SignupRequestDto;
 import com.example.trello.userBoard.entity.UserBoard;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -46,6 +48,18 @@ public class User {
         this.username = request.getUsername();
         this.email = request.getEmail();
         this.password = password;
+    }
+    public User(Long userId, SignupRequestDto request) {
+        this.userId = userId;
+        this.username = request.getUsername();
+        this.email = request.getEmail();
+        this.password = request.getPassword();
+    }
+
+    public User(SignupRequestDto request) {
+        this.username = request.getUsername();
+        this.email = request.getEmail();
+        this.password = request.getPassword();
     }
 
     public void updateProfile(ProfileRequestDto request) {

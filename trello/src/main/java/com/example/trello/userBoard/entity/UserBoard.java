@@ -1,7 +1,7 @@
 package com.example.trello.userBoard.entity;
 
 import com.example.trello.board.entity.Board;
-import com.example.trello.user.User;
+import com.example.trello.user.entity.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

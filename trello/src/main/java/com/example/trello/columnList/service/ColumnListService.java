@@ -8,7 +8,7 @@ import com.example.trello.columnList.dto.SequenceResponseDto;
 import com.example.trello.columnList.entity.ColumnList;
 import com.example.trello.columnList.repository.ColumnListRepository;
 import com.example.trello.global.exception.NotFoundColumnListException;
-import com.example.trello.user.User;
+import com.example.trello.user.entity.User;
 import com.example.trello.userBoard.repository.UserBoardRepository;
 import java.util.ArrayList;
 import java.util.List;

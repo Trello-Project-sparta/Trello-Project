@@ -1,7 +1,7 @@
 package com.example.trello.security;
 
-import com.example.trello.user.User;
-import com.example.trello.user.UserRepository;
+import com.example.trello.user.entity.User;
+import com.example.trello.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -7,7 +7,7 @@ import com.example.trello.board.repository.BoardRepository;
 import com.example.trello.global.exception.InvalidUserException;
 import com.example.trello.global.exception.NotFoundBoardException;
 import com.example.trello.global.exception.NotFoundUserBoardException;
-import com.example.trello.user.User;
+import com.example.trello.user.entity.User;
 import com.example.trello.userBoard.entity.UserBoard;
 import com.example.trello.userBoard.entity.UserRoleEnum;
 import com.example.trello.userBoard.repository.UserBoardRepository;

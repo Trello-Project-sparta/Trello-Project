@@ -1,9 +1,19 @@
-package com.example.trello.user;
+package com.example.trello.user.controller;
 
 import com.example.trello.common.dto.ResponseDto;
 import com.example.trello.security.UserDetailsImpl;
+import com.example.trello.user.dto.InActiveResponseDto;
+import com.example.trello.user.dto.MyBoardUserResponseDto;
+import com.example.trello.user.dto.MyCardResponseDto;
+import com.example.trello.user.dto.MyCommentResponseDto;
+import com.example.trello.user.service.UserService;
+import com.example.trello.user.dto.LoginRequestDto;
+import com.example.trello.user.dto.ProfileRequestDto;
+import com.example.trello.user.dto.ProfileResponseDto;
+import com.example.trello.user.dto.SignupRequestDto;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +22,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @Controller
@@ -68,6 +80,37 @@ public class UserController {
 
 		ProfileResponseDto response = userService.updateProfile(userDetails.getUser(), request);
 
+		return ResponseEntity.ok().body(ResponseDto.success(200, response));
+	}
+
+	@GetMapping("/users")
+	public ResponseEntity<ResponseDto> getInActiveUserList(@RequestParam("active") boolean active) {
+		List<InActiveResponseDto> response = userService.getInActiveUserList(active);
+		return ResponseEntity.ok().body(ResponseDto.success(200, response));
+	}
+
+	@GetMapping("/users/mycards")
+	public ResponseEntity<ResponseDto> getMyCards(
+		@AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+		List<MyCardResponseDto> response = userService.getMyCards(userDetails.getUser());
+		return ResponseEntity.ok().body(ResponseDto.success(200,response));
+	}
+
+	@GetMapping("/users/mycomments")
+	public ResponseEntity<ResponseDto> getMyComments(
+		@AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+		List<MyCommentResponseDto> response = userService.getMyComments(userDetails.getUser());
+		return ResponseEntity.ok().body(ResponseDto.success(200,response));
+	}
+
+	@GetMapping("/users/myboardusers")
+	public ResponseEntity<ResponseDto> getMyBoardUsers(
+		@RequestParam("boardNum") Long boardNum,
+		@AuthenticationPrincipal UserDetailsImpl userDetails) {
+		List<MyBoardUserResponseDto> response = userService.getMyBoardUsers(boardNum,
+			userDetails.getUser());
 		return ResponseEntity.ok().body(ResponseDto.success(200, response));
 	}
 

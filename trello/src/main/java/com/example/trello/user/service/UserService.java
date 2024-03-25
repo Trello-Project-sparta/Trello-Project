@@ -1,9 +1,20 @@
-package com.example.trello.user;
+package com.example.trello.user.service;
 
 import com.example.trello.jwt.JwtUtil;
+import com.example.trello.user.dto.InActiveResponseDto;
+import com.example.trello.user.dto.LoginRequestDto;
+import com.example.trello.user.dto.MyBoardUserResponseDto;
+import com.example.trello.user.dto.MyCardResponseDto;
+import com.example.trello.user.dto.MyCommentResponseDto;
+import com.example.trello.user.dto.ProfileRequestDto;
+import com.example.trello.user.dto.ProfileResponseDto;
+import com.example.trello.user.dto.SignupRequestDto;
+import com.example.trello.user.entity.User;
+import com.example.trello.user.repository.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,14 +46,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-//	@Transactional(readOnly = true)
-//	public ProfileResponseDto getProfile(User user) {
-//		User findUser = userRepository.findById(user.getUserId())
-//			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
-//
-//		return new ProfileResponseDto(findUser);
-//	}
-
+    @Transactional
     public void login(LoginRequestDto request, HttpServletResponse res) {
         String username = request.getUsername();
         String password = request.getPassword();
@@ -84,8 +88,60 @@ public class UserService {
         findUser.inActiveUser();
     }
 
+    @Transactional(readOnly = true)
+    public List<InActiveResponseDto> getInActiveUserList(boolean active) {
+        List<InActiveResponseDto> response;
 
-    public List<User> findAllByEmailIn(List<String> emailList) {
-        return userRepository.findAllByEmailIn(emailList);
+        response = userRepository.getInActiveUserList(active).stream().map(m ->
+            InActiveResponseDto.builder().username(m).build()).collect(
+            Collectors.toList());
+
+        return response;
     }
+
+    @Transactional(readOnly = true)
+    public List<MyBoardUserResponseDto> getMyBoardUsers(Long boardNum, User user) {
+        List<MyBoardUserResponseDto> response;
+
+		response = userRepository.getMyBoardUsers(boardNum).stream()
+			.map(m -> MyBoardUserResponseDto.builder().username(m.getUsername())
+				.role(m.getRole()).boardId(m.getBoardId()).build()).collect(
+				Collectors.toList());
+
+        for (int i = 0; i < response.size(); i++) {
+            if(!user.getUsername().equals(response.get(i).getUsername())) {
+				throw new IllegalArgumentException("찾을 수 없습니다");
+            }
+        }
+        return response;
+    }
+
+	@Transactional(readOnly = true)
+	public List<MyCardResponseDto> getMyCards(User user) {
+		List<MyCardResponseDto> response;
+
+		response = userRepository.getMyCards(user.getUsername()).stream()
+			.map(m -> MyCardResponseDto.builder().username(m.getUsername())
+				.boardId(m.getBoardId()).cardname(m.getCardname()).build())
+			.collect(Collectors.toList());
+
+		return response;
+	}
+
+	@Transactional(readOnly = true)
+	public List<MyCommentResponseDto> getMyComments(User user) {
+		List<MyCommentResponseDto> response;
+
+		response = userRepository.getMyComments(user.getUsername()).stream()
+			.map(m -> MyCommentResponseDto.builder().username(m.getUsername())
+				.cardId(m.getCardId()).content(m.getContent()).build())
+			.collect(Collectors.toList());
+
+		return response;
+	}
+
+
+	public List<User> findAllByEmailIn(List<String> emailList) {
+		return userRepository.findAllByEmailIn(emailList);
+	}
 }
