@@ -1,17 +1,12 @@
 package com.example.trello.board.entity;
 
 import com.example.trello.common.util.Timestamped;
-import com.example.trello.userBoard.entity.UserBoard;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.HashSet;
-import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,8 +30,8 @@ public class Board extends Timestamped {
     @Column
     private String description;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<UserBoard> userBoards = new HashSet<>();
+//    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<UserBoard> userBoards = new HashSet<>();
 
 
     public Board(String title, String background_color, String description) {
