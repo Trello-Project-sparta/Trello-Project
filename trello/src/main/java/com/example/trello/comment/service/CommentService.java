@@ -10,7 +10,7 @@ import com.example.trello.comment.dto.CommentResponseDto;
 import com.example.trello.comment.entity.Comment;
 import com.example.trello.comment.repository.CommentRepository;
 import com.example.trello.security.UserDetailsImpl;
-import com.example.trello.user.User;
+import com.example.trello.user.entity.User;
 import com.example.trello.userBoard.entity.UserBoard;
 import com.example.trello.userBoard.repository.UserBoardRepository;
 import jakarta.transaction.Transactional;
