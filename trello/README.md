@@ -24,7 +24,7 @@
 - [x] 쿼리 최적화, 인덱싱
 
 ## **와이어 프레임**
-![와이어 프레임](frame.PNG)
+![와이어 프레임](document/frame.PNG)
 
 ## **ERD diagram**
-![erd](erd.PNG)
+![erd](document/erd.PNG)
