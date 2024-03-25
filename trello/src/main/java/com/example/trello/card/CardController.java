@@ -65,6 +65,17 @@ public class CardController {
     return ResponseEntity.ok().body(workerResponseDto);
   }
 
+  @PutMapping("/boards/{boardId}/cards/{cardId}/worker/{workerId}/deleteworker")
+  public ResponseEntity<WorkerResponseDto> deleteWorker(
+      @AuthenticationPrincipal UserDetailsImpl userDetails,
+      @PathVariable Long boardId,
+      @PathVariable Long workerId,
+      @PathVariable Long cardId) {
+    WorkerResponseDto workerResponseDto = cardService.deleteWorker(userDetails.getUser(), boardId,
+        workerId, cardId);
+    return ResponseEntity.ok().body(workerResponseDto);
+  }
+
   @PutMapping("/boards/{boardId}/columns/{columnId}/cards/{cardId}/updatecolumn")
   public ResponseEntity<CardResponseDto> updateColmn(
       @AuthenticationPrincipal UserDetailsImpl userDetails,

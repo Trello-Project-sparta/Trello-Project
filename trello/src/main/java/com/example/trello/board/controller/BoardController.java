@@ -25,36 +25,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/boards")
 public class BoardController {
 
-    private final BoardService boardService;
+  private final BoardService boardService;
 
-    @PostMapping("")
-    public ResponseEntity<BoardResponseDto> createBoard(
-        @RequestBody BoardRequestDto boardRequestDto,
-        @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return ResponseEntity.ok()
-            .body(boardService.createBoard(boardRequestDto, userDetails.getUser()));
-    }
+  @PostMapping("")
+  public ResponseEntity<BoardResponseDto> createBoard(
+      @RequestBody BoardRequestDto boardRequestDto,
+      @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    return ResponseEntity.ok()
+        .body(boardService.createBoard(boardRequestDto, userDetails.getUser()));
+  }
 
-    @PatchMapping("/{boardId}")
-    public ResponseEntity<BoardResponseDto> updateBoard(@PathVariable Long boardId,
-        @RequestBody BoardRequestDto boardRequestDto,
-        @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return ResponseEntity.ok()
-            .body(boardService.updateBoard(boardId, boardRequestDto, userDetails.getUser()));
-    }
+  @PatchMapping("/{boardId}")
+  public ResponseEntity<BoardResponseDto> updateBoard(@PathVariable Long boardId,
+      @RequestBody BoardRequestDto boardRequestDto,
+      @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    return ResponseEntity.ok()
+        .body(boardService.updateBoard(boardId, boardRequestDto, userDetails.getUser()));
+  }
 
-    @DeleteMapping("/{boardId}")
-    public ResponseEntity<ResponseDto<String>> deleteBoard(@PathVariable Long boardId,
-        @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        boardService.deleteBoard(boardId, userDetails.getUser());
-        return ResponseEntity.ok().body(ResponseDto.success(HttpStatus.OK.value(), "보드를 삭제했습니다."));
-    }
+  @DeleteMapping("/{boardId}")
+  public ResponseEntity<ResponseDto<String>> deleteBoard(@PathVariable Long boardId,
+      @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    boardService.deleteBoard(boardId, userDetails.getUser());
+    return ResponseEntity.ok().body(ResponseDto.success(HttpStatus.OK.value(), "보드를 삭제했습니다."));
+  }
 
-    @GetMapping("")
-    public List<BoardResponseDto> getAllBoard(
-        @AuthenticationPrincipal UserDetailsImpl userDetails,
-        @RequestParam(name = "search", defaultValue = "") String search) {
-        return boardService.getAllBoard(userDetails.getUser(), search);
-    }
+  @GetMapping("")
+  public List<BoardResponseDto> getAllBoard(
+      @AuthenticationPrincipal UserDetailsImpl userDetails,
+      @RequestParam(name = "search", defaultValue = "") String search) {
+    return boardService.getAllBoard(userDetails.getUser(), search);
+  }
 
 }
