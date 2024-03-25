@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="41efee18-9271-4d0e-9d1d-77d0f98407b8" name="Changes" comment=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-5" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/trello">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="trello" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="comments" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jiwon317&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="0bc5b4cb-34bf-452f-99e1-ccb824d36e02" />
+        <option name="url" value="https://github.com/Trello-Project-sparta/Trello-Project.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2dqw50hBYPgl9OjHNkYiEvc0hju" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build trello.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.TrelloApplication.executor": "Run",
+    "git-widget-placeholder": "feat/comment",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/jiwon/IdeaProjects/Trello-Project/trello/src/main/java/com/example/trello/comment/common/exception",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/common/exception" />
+      <recent name="$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/exception" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.trello.comment.exception" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TrelloApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="trello.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.trello.TrelloApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-f644763e9732-220112af" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="41efee18-9271-4d0e-9d1d-77d0f98407b8" name="Changes" comment="" />
+      <created>1710748729002</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710748729002</updated>
+      <workItem from="1710748730106" duration="1479000" />
+      <workItem from="1710750405387" duration="7419000" />
+      <workItem from="1710841593541" duration="1239000" />
+      <workItem from="1710912208779" duration="13662000" />
+      <workItem from="1711094615481" duration="6232000" />
+      <workItem from="1711157973902" duration="6000" />
+      <workItem from="1711164314849" duration="11464000" />
+      <workItem from="1711256197363" duration="6651000" />
+    </task>
+    <task id="LOCAL-00001" summary=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료">
+      <option name="closed" value="true" />
+      <created>1711174239757</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711174239757</updated>
+    </task>
+    <task id="LOCAL-00002" summary=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-3">
+      <option name="closed" value="true" />
+      <created>1711262087399</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711262087399</updated>
+    </task>
+    <task id="LOCAL-00003" summary=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-4">
+      <option name="closed" value="true" />
+      <created>1711262711135</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711262711135</updated>
+    </task>
+    <task id="LOCAL-00004" summary=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-5">
+      <option name="closed" value="true" />
+      <created>1711262848594</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711262848594</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feat/comment" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료" />
+    <MESSAGE value=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-3" />
+    <MESSAGE value=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-4" />
+    <MESSAGE value=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-5" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bug: feat/comment CRUD 기능 구현 및 버그 수정 완료-5" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/service/CommentService.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/trello/src/main/java/com/example/trello/comment/service/CommentService.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Trello_Project$TrelloApplication.ic" NAME="TrelloApplication Coverage Results" MODIFIED="1710750341803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.trello.*</FILTER>
+    </SUITE>
+  </component>
+</project>

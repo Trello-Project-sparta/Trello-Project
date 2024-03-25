@@ -1,5 +1,6 @@
 HELP.md
 .gradle
+
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -18,6 +19,8 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+.gradle
+build
 .idea
 *.iws
 *.iml
@@ -37,3 +40,9 @@ out/
 .vscode/
 
 application-secret.properties
+/.gradle/
+/.gradle/
+/.gradle/
+build
+/.gradle/
+/.gradle/

@@ -1,7 +1,5 @@
 package com.example.trello.card;
 
-import com.example.trello.columnList.ColumnList;
-import com.example.trello.user.User;
 import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import lombok.Getter;
