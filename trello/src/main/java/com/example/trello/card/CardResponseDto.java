@@ -19,7 +19,7 @@ public class CardResponseDto {
   public CardResponseDto(Card card) {
     this.cardId = card.getCardId();
     this.cardname = card.getCardname();
-    this.creatorname = card.getCreator().getUsername();
+    this.creatorname = card.getUserBoard().getUser().getUsername();
     this.description = card.getDescription();
     this.color = card.getColor();
     this.deadline = card.getDeadline();
