@@ -24,10 +24,10 @@
 - [x] 쿼리 최적화, 인덱싱
 
 ## **와이어 프레임**
-![와이어 프레임](frame.PNG)
+![와이어 프레임](document/frame.PNG)
 
 ## **ERD diagram**
-![erd](erd.PNG)
+![erd](document/erd.PNG)
 
 ## **쿼리 실행 계획 분석 및 최적화**
 https://velog.io/@beunchoi/explain-%EC%8B%A4%ED%96%89-%EB%B0%8F-%EC%BF%BC%EB%A6%AC-%EC%B5%9C%EC%A0%81%ED%99%94
