@@ -105,7 +105,7 @@ public class UserController {
 		return ResponseEntity.ok().body(ResponseDto.success(200,response));
 	}
 
-	@GetMapping("/users/myboard")
+	@GetMapping("/users/myboardusers")
 	public ResponseEntity<ResponseDto> getMyBoardUsers(
 		@RequestParam("boardNum") Long boardNum,
 		@AuthenticationPrincipal UserDetailsImpl userDetails) {
